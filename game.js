@@ -1,10 +1,5 @@
 // Main game logic
 
-const canvas = document.getElementById('game')
-const ctx = canvas.getContext('2d')
-let cWidth = 0
-let cHeight = 0
-
 const leftWall = 20
 const rightWall = 374
 const topWall = 20

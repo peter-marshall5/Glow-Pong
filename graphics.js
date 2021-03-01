@@ -1,10 +1,32 @@
 // Handles all graphics
 
+const canvas = document.getElementById('game')
+const ctx = canvas.getContext('2d')
+let cWidth = 0
+let cHeight = 0
+
 let textColor = new Color(255, 255, 255)
 let textBlurColor = new Color(150, 100, 100)
 let spriteColor = new Color(255, 128, 128)
 let paddleBlurColor = new Color(160, 80, 80)
 let textBlur = 30
+
+function resize() {
+  // Check if width or height should be scaled according to resolution
+  if(document.body.clientWidth / 16 * 9 > document.body.clientHeight) {
+    // In landscape
+    cHeight = document.body.clientHeight
+    // Find height based on width
+    cWidth = cHeight / 9 * 16
+  } else {
+    // In portrait
+    cWidth = document.body.clientWidth
+    // Find width based on height
+    cHeight = cWidth / 16 * 9
+  }
+  canvas.width = cWidth
+  canvas.height = cHeight
+}
 
 function draw (faded) {
   ctx.fillStyle='black';
