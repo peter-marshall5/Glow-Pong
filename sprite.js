@@ -1,3 +1,5 @@
+let sprites = []
+
 class Sprite {
   constructor(x, y, width, height, color, blurRadius, blurColor) {
     this.position = {x: x, y: y}
@@ -6,6 +8,7 @@ class Sprite {
     this.blurRadius = blurRadius || 0
     this.blurColor = blurColor || null
     this.hidden = false
+    sprites.push(this)
   }
 
   move(x, y, mode) {

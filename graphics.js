@@ -11,10 +11,9 @@ function draw (faded) {
   if (faded) {
     ctx.globalAlpha = 0.6
   }
-  divider.draw()
-  ball.draw()
-  leftPaddle.draw()
-  rightPaddle.draw()
+  for (let i = 0; i < sprites.length; i++) {
+    sprites[i].draw()
+  }
   drawText('Score', 0, 6, 6)
   drawText(scores[0], -50, 11, 11)
   drawText(scores[1], 50, 11, 11)
