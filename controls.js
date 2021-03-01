@@ -1,3 +1,5 @@
+// Handles key presses
+
 function onkeydown (e) {
   //console.log('Key down:', e.code)
   switch (e.code) {

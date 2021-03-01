@@ -1,3 +1,5 @@
+// Handles all graphics
+
 let textColor = new Color(255, 255, 255)
 let textBlurColor = new Color(150, 100, 100)
 let spriteColor = new Color(255, 128, 128)

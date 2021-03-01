@@ -1,3 +1,5 @@
+// Main game logic
+
 const canvas = document.getElementById('game')
 const ctx = canvas.getContext('2d')
 let cWidth = 0
@@ -38,6 +40,7 @@ let divider = new Sprite(199.5, topWall, 1, 225 - topWall - (225 - bottomWall),
 // Runs before every frame is drawn on-screen
 function gameLoop () {
   if (gameState === 'stopped') {
+    // Show welcome screen
     drawWelcome()
   } else if(gameState === 'gameover') {
     // Show game over screen

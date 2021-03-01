@@ -1,3 +1,5 @@
+// Handles sprite objects
+
 let sprites = []
 
 class Sprite {
