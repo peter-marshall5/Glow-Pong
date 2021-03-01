@@ -105,5 +105,5 @@ function drawWelcome () {
   drawText('Space: Start game', 0, 125, 7)
   drawText('W and S: Move left paddle', 0, 134, 7)
   drawText('Up and Down arrows: Move right paddle', 0, 142, 5)
-  drawText('Press space to begin', 0, 200, 8)
+  drawText('Press space to begin', 0, 190, 8)
 }
