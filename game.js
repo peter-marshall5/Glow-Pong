@@ -25,7 +25,7 @@ let paddleColor = new Color(255, 255, 255)
 let divider = new Sprite(199.5, topWall, 1, 225 - topWall - (225 - bottomWall),
   null, 10, new Color(255, 64, 64))
 let ball = new Sprite(50, 50, 10, 10, new Color(127, 255, 0),
-  10, new Color(127, 255, 0))
+  12, new Color(100, 180, 0))
 ball.hidden = true
 let leftPaddle = new Sprite(leftWall, 20, 6, paddleHeight, paddleColor,
     5, paddleBlurColor)
