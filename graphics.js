@@ -100,5 +100,11 @@ function drawGameOver () {
 
 function drawWelcome () {
   draw(true)
-  drawText('Welcome', 0, 60, 30)
+  drawText('Pong Game', 0, 60, 30)
+  drawText('by Peter Marshall', 0, 80, 7)
+  drawText('Controls:', 0, 110, 10)
+  drawText('Space: Start game', 0, 125, 7)
+  drawText('W and S: Move left paddle', 0, 134, 7)
+  drawText('Up and Down arrows: Move right paddle', 0, 142, 5)
+  drawText('Press space to begin', 0, 200, 8)
 }
