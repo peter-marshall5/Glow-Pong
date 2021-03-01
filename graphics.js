@@ -9,7 +9,7 @@ function draw (faded) {
   ctx.globalAlpha = 1
   ctx.fillRect(0,0,canvas.width,canvas.height);
   if (faded) {
-    ctx.globalAlpha = 0.6
+    ctx.globalAlpha = 0.4
   }
   for (let i = 0; i < sprites.length; i++) {
     sprites[i].draw()
