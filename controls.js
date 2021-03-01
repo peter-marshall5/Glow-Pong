@@ -3,7 +3,7 @@ function onkeydown (e) {
   switch (e.code) {
     case 'Space':
       console.log('Space pressed')
-      if (gameState === 'gameover') {
+      if (gameState === 'gameover' || gameState === 'stopped') {
         startGame()
       }
       break;

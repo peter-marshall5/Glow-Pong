@@ -4,11 +4,13 @@ let spriteColor = new Color(255, 128, 128)
 let paddleBlurColor = new Color(160, 80, 80)
 let textBlur = 30
 
-function draw () {
-  ctx.globalAlpha = 0.95
+function draw (faded) {
   ctx.fillStyle='black';
-  ctx.fillRect(0,0,canvas.width,canvas.height);
   ctx.globalAlpha = 1
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  if (faded) {
+    ctx.globalAlpha = 0.6
+  }
   divider.draw()
   ball.draw()
   leftPaddle.draw()
@@ -16,9 +18,13 @@ function draw () {
   drawText('Score', 0, 6, 6)
   drawText(scores[0], -50, 11, 11)
   drawText(scores[1], 50, 11, 11)
+  ctx.globalAlpha = 1
 }
 
 function drawSprite (that) {
+  if (that.hidden) {
+    return
+  }
   let coordMap = {
     start: convertCoords(that.position.x, that.position.y),
     size: convertCoords(that.size.w, that.size.h)
@@ -82,7 +88,7 @@ function drawText (message, x, y, fontSize, color, blurColor) {
 }
 
 function drawGameOver () {
-  draw()
+  draw(true)
   drawText('Game over!', 0, 60, 30)
   if (winner === 'l') {
     drawText('Left wins', 0, 110, 10)
@@ -90,4 +96,9 @@ function drawGameOver () {
     drawText('Right wins', 0, 110, 10)
   }
   drawText('Press space to continue', 0, 200, 8)
+}
+
+function drawWelcome () {
+  draw(true)
+  drawText('Welcome', 0, 60, 30)
 }

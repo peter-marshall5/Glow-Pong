@@ -36,7 +36,9 @@ let divider = new Sprite(199.5, topWall, 1, 225 - topWall - (225 - bottomWall),
 
 // Runs before every frame is drawn on-screen
 function gameLoop () {
-  if(gameState === 'gameover') {
+  if (gameState === 'stopped') {
+    drawWelcome()
+  } else if(gameState === 'gameover') {
     // Show game over screen
     drawGameOver()
   } else {
@@ -55,7 +57,7 @@ function gameLoop () {
           scores[1]++
         }
         // Hide the ball in case it's still on-screen
-        ball.move(500, 500)
+        ball.hidden = true
       }
     }
     doMovementTick()
@@ -136,6 +138,7 @@ function randomFieldCoords (leftHalf) {
 }
 
 function startGame () {
+  ball.hidden = false
   let randomCoords = randomFieldCoords()
   ball.move(randomCoords.x, randomCoords.y)
   if (randomCoords.x > 200) {
@@ -153,5 +156,5 @@ function startGame () {
 
 resize()
 document.body.onresize = resize
-startGame()
+//startGame()
 gameLoop()

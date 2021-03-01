@@ -5,6 +5,7 @@ class Sprite {
     this.color = color || spriteColor
     this.blurRadius = blurRadius || 0
     this.blurColor = blurColor || null
+    this.hidden = false
   }
 
   move(x, y, mode) {
