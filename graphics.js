@@ -5,6 +5,7 @@ const ctx = canvas.getContext('2d')
 let cWidth = 0
 let cHeight = 0
 
+let backgroundColor = ''
 let textColor = new Color(255, 255, 255)
 let textBlurColor = new Color(150, 100, 100)
 let spriteColor = new Color(255, 128, 128)
@@ -26,10 +27,16 @@ function resize() {
   }
   canvas.width = cWidth
   canvas.height = cHeight
+  backgroundColor = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, canvas.width / 2, canvas.width / 2, canvas.height / 2, 0)
+  backgroundColor.addColorStop(0, 'rgba(17,17,17,1)')
+  backgroundColor.addColorStop(1, 'rgba(24,24,24,1)')
+  //backgroundColor.addColorStop(0, 'red')
+  //backgroundColor.addColorStop(1, 'blue')
 }
 
 function draw (faded) {
-  ctx.fillStyle='black';
+  ctx.fillStyle ='radial-gradient(circle, rgba(17,17,17,1) 0%, rgba(24,24,24,1) 100%)';
+  ctx.fillStyle = backgroundColor
   ctx.globalAlpha = 1
   ctx.fillRect(0,0,canvas.width,canvas.height);
   if (faded) {
