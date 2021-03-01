@@ -24,9 +24,6 @@ let gameState = 'stopped'
 let winner = ''
 // Store the player scores, left -> right
 let scores = [0, 0]
-let ball = new Sprite(50, 50, 10, 10, new Color(127, 255, 0),
-  20, new Color(127, 255, 0))
-ball.hidden = true
 let paddleColor = new Color(255, 255, 255)
 let leftPaddle = new Sprite(leftWall, 20, 6, paddleHeight, paddleColor,
   5, paddleBlurColor)
@@ -34,6 +31,9 @@ let rightPaddle = new Sprite(rightWall, 20, 6, paddleHeight, paddleColor,
   5, paddleBlurColor)
 let divider = new Sprite(199.5, topWall, 1, 225 - topWall - (225 - bottomWall),
   null, 10, new Color(255, 64, 64))
+  let ball = new Sprite(50, 50, 10, 10, new Color(127, 255, 0),
+    20, new Color(127, 255, 0))
+  ball.hidden = true
 
 // Runs before every frame is drawn on-screen
 function gameLoop () {
