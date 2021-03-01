@@ -67,9 +67,6 @@ function drawSprite (that) {
     ctx.shadowOffsetX = 0
     ctx.shadowOffsetY = 0
     ctx.shadowBlur = blurRadius
-    // Stroke rectangle to add glow
-    ctx.strokeRect(coordMap.start.x, coordMap.start.y,
-    coordMap.size.x, coordMap.size.y)
   }
   // Set color
   ctx.fillStyle='rgb('
