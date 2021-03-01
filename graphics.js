@@ -30,8 +30,6 @@ function resize() {
   backgroundColor = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, canvas.width / 2, canvas.width / 2, canvas.height / 2, 0)
   backgroundColor.addColorStop(0, 'rgba(17,17,17,1)')
   backgroundColor.addColorStop(1, 'rgba(24,24,24,1)')
-  //backgroundColor.addColorStop(0, 'red')
-  //backgroundColor.addColorStop(1, 'blue')
 }
 
 function draw (faded) {
