@@ -7,7 +7,7 @@ let cHeight = 0
 
 let backgroundColor = ''
 let textColor = new Color(255, 255, 255)
-let textBlurColor = new Color(150, 100, 100)
+let textBlurColor = new Color(100, 80, 80)
 let spriteColor = new Color(255, 128, 128)
 let paddleBlurColor = new Color(160, 80, 80)
 let textBlur = 30
