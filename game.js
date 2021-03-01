@@ -25,7 +25,7 @@ let winner = ''
 // Store the player scores, left -> right
 let scores = [0, 0]
 let ball = new Sprite(50, 50, 10, 10, new Color(127, 255, 0),
-  30, new Color(127, 255, 0))
+  20, new Color(127, 255, 0))
 let paddleColor = new Color(255, 255, 255)
 let leftPaddle = new Sprite(leftWall, 20, 6, paddleHeight, paddleColor,
   5, paddleBlurColor)
