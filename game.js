@@ -30,6 +30,7 @@ ball.hidden = true
 let leftPaddle = new Sprite(leftWall, 20, 6, paddleHeight, paddleColor,
     5, paddleBlurColor)
 let rightPaddle = new Sprite(rightWall, 20, 6, paddleHeight, paddleColor, 5, paddleBlurColor)
+resetPaddles()
 
 // Runs before every frame is drawn on-screen
 function gameLoop () {
@@ -141,6 +142,12 @@ function randomFieldCoords (leftHalf) {
   return {x: randomX, y: randomY}
 }
 
+function resetPaddles () {
+  // Reset the paddles to half the screen
+  leftPaddle.move(null, 225 / 2 - leftPaddle.size.h / 2)
+  rightPaddle.move(null, 225 / 2 - rightPaddle.size.h / 2)
+}
+
 function startGame () {
   // Game over sound may still be playing
   stopSoundEffects()
@@ -163,6 +170,7 @@ function startGame () {
   } else {
     ballMovement[1] = -yVelocity
   }
+  resetPaddles()
   gameState = 'playing'
 }
 
