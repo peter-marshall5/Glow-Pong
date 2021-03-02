@@ -25,11 +25,11 @@ let paddleColor = new Color(255, 255, 255)
 let divider = new Sprite(199.5, topWall, 1, 225 - topWall - (225 - bottomWall),
   null, 10, new Color(255, 64, 64))
 let ball = new Sprite(50, 50, 10, 10, new Color(127, 255, 0),
-  5, new Color(80, 100, 0), new Color(4, 206, 54))
+  5, new Color(80, 100, 0), new Color(4, 255, 54))
 ball.hidden = true
 let leftPaddle = new Sprite(leftWall, 20, 6, paddleHeight, paddleColor,
-    5, new Color(80, 80, 160), new Color(80, 80, 255))
-let rightPaddle = new Sprite(rightWall, 20, 6, paddleHeight, paddleColor, 5, new Color(160, 80, 80), new Color(255, 80, 80))
+    5, new Color(80, 80, 160), new Color(80, 80, 205))
+let rightPaddle = new Sprite(rightWall, 20, 6, paddleHeight, paddleColor, 5, new Color(160, 80, 80), new Color(205, 80, 80))
 resetPaddles()
 
 // Runs before every frame is drawn on-screen
