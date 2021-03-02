@@ -10,6 +10,7 @@ let textColor = new Color(255, 255, 255)
 let textBlurColor = new Color(100, 80, 80)
 let spriteColor = new Color(255, 128, 128)
 let textBlur = 30
+let textOffset = 400 / 4 - 20
 
 function resize() {
   // Check if width or height should be scaled according to resolution
@@ -32,7 +33,6 @@ function resize() {
 }
 
 function draw (faded) {
-  ctx.fillStyle ='radial-gradient(circle, rgba(17,17,17,1) 0%, rgba(24,24,24,1) 100%)';
   ctx.fillStyle = backgroundColor
   ctx.globalAlpha = 1
   ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -43,8 +43,10 @@ function draw (faded) {
     sprites[i].draw()
   }
   drawText('Score', 0, 6, 6)
-  drawText(scores[0], -50, 11, 11)
-  drawText(scores[1], 50, 11, 11)
+  // Draw blue / left score
+  drawText(scores[0], -textOffset, 20, 20, new Color(30, 80, 255))
+  // Draw red / right score
+  drawText(scores[1], textOffset, 20, 20, new Color(255, 30, 30))
   ctx.globalAlpha = 1
 }
 
@@ -144,9 +146,20 @@ function drawGameOver () {
   draw(true)
   drawText('Game over!', 0, 60, 30)
   if (winner === 'l') {
-    drawText('Left wins', 0, 110, 10)
+    drawText('Blue wins', 0, 110, 10)
   } else {
-    drawText('Right wins', 0, 110, 10)
+    drawText('Red wins', 0, 110, 10)
+  }
+  drawText('Press space to continue', 0, 200, 8)
+}
+
+function drawVictory () {
+  draw(true)
+  drawText('VICTORY!', 0, 60, 30)
+  if (winner === 'l') {
+    drawText('Blue wins', 0, 110, 10)
+  } else {
+    drawText('Red wins', 0, 110, 10)
   }
   drawText('Press space to continue', 0, 200, 8)
 }

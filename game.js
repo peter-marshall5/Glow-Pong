@@ -17,6 +17,8 @@ let ballMovement = [0, 0]
 let paddleMovement = [0, 0]
 // Store the state of the game
 let gameState = 'stopped'
+// Store the gamemode
+let gameMode = 'firstTo10'
 // Store who won when the ball passes a paddle
 let winner = ''
 // Store the player scores, left -> right
@@ -40,6 +42,9 @@ function gameLoop () {
   } else if(gameState === 'gameover') {
     // Show game over screen
     drawGameOver()
+  } else if(gameState === 'victory') {
+    // Show victory screen
+    drawVictory()
   } else {
     if (gameState === 'playing') {
       checkCollisions()
@@ -47,14 +52,22 @@ function gameLoop () {
       if (ball.checkLeftPass(0 - ball.size.w) ||
       ball.checkRightPass(400 + ball.size.w)) {
         console.log('Game over')
-        soundEffects["goal"].play()
-        // Set game state
-        gameState = 'gameover'
         // Increment winner's score
         if (winner === 'l') {
           scores[0]++
         } else {
           scores[1]++
+        }
+        if (gameMode === 'firstTo10' && (scores[0] > 9 || scores[1] > 9)) {
+          // Play winner sound
+          soundEffects["winner"].play()
+          // Set game state
+          gameState = 'victory'
+        } else {
+          // Play goal sound
+          soundEffects["goal"].play()
+          // Set game state
+          gameState = 'gameover'
         }
         // Hide the ball in case it's still on-screen
         ball.hidden = true
@@ -178,6 +191,14 @@ function startGame () {
   }
   resetPaddles()
   gameState = 'playing'
+}
+
+function resetGame () {
+  scores[0] = 0
+  scores[1] = 0
+  resetPaddles()
+  ball.hidden = true
+  gameState = 'stopped'
 }
 
 resize()

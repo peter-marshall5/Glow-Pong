@@ -8,14 +8,21 @@ function onkeydown (e) {
       if (gameState === 'gameover' || gameState === 'stopped') {
         startGame()
       }
+      if (gameState === 'victory') {
+        resetGame()
+      }
       break;
     case 'ArrowUp':
       console.log('Up arrow pressed')
-      paddleMovement[1] = 2
+      if (gameMode !== 'bot') {
+        paddleMovement[1] = 2
+      }
       break;
     case 'ArrowDown':
       console.log('Down arrow pressed')
-      paddleMovement[1] = 1
+      if (gameMode !== 'bot') {
+        paddleMovement[1] = 1
+      }
       break;
     case 'KeyW':
       console.log('W key pressed')
@@ -35,11 +42,15 @@ function onkeyup (e) {
   switch (e.code) {
     case 'ArrowUp':
       console.log('Up arrow released')
-      paddleMovement[1] = 0
+      if (gameMode !== 'bot') {
+        paddleMovement[1] = 0
+      }
       break;
       case 'ArrowDown':
       console.log('Down arrow released')
-      paddleMovement[1] = 0
+      if (gameMode !== 'bot') {
+        paddleMovement[1] = 0
+      }
       break;
     case 'KeyW':
       console.log('W key released')

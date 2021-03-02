@@ -32,7 +32,7 @@ class SoundEffect {
     // Connect to gain node
     this.source.connect(volume)
     // Play the sound
-    this.source.start(actx.currentTime, n || 0.01)
+    this.source.start(actx.currentTime, n || 0.007)
   }
 
   stop() {
@@ -67,4 +67,5 @@ new SoundEffect('assets/sounds/placing_puck.ogg', 'placingBall')
 new SoundEffect('assets/sounds/puck_hit1.ogg', 'ballHit1')
 new SoundEffect('assets/sounds/puck_hit2.ogg', 'ballHit2')
 new SoundEffect('assets/sounds/show_level.ogg', 'showLevel')
+new SoundEffect('assets/sounds/winner.ogg', 'winner')
 loadSoundEffects()
