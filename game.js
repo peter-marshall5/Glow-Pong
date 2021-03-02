@@ -46,6 +46,7 @@ function gameLoop () {
       if (ball.checkLeftPass(0 - ball.size.w) ||
       ball.checkRightPass(400 + ball.size.w)) {
         console.log('Game over')
+        soundEffects["goal"].play()
         // Set game state
         gameState = 'gameover'
         // Increment winner's score
@@ -70,6 +71,7 @@ function checkCollisions() {
     // Ball hit the top or bottom
     console.log('Horizontal collision')
     ballMovement[1] = -ballMovement[1]
+    soundEffects["borderHit"].play()
   }
   if(ball.checkLeftPass(leftWall + leftPaddle.size.w)) {
     if (!ball.checkVerticalCollision(leftPaddle)) {
@@ -81,6 +83,7 @@ function checkCollisions() {
     } else {
       // Make the ball bounce off the paddle
       ballMovement[0] = xVelocity * (Math.random() * 1 + 0.6)
+      soundEffects["ballHit1"].play()
     }
   }
   if(ball.checkRightPass(rightWall)) {
@@ -93,6 +96,7 @@ function checkCollisions() {
     } else {
       // Make the ball bounce off the paddle
       ballMovement[0] = -xVelocity * (Math.random() * 1 + 0.6)
+      soundEffects["ballHit2"].play()
     }
   }
 }
@@ -136,6 +140,7 @@ function randomFieldCoords (leftHalf) {
 }
 
 function startGame () {
+  soundEffects["placingBall"].play()
   ball.hidden = false
   let randomCoords = randomFieldCoords()
   ball.move(randomCoords.x, randomCoords.y)
