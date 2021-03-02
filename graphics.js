@@ -164,13 +164,36 @@ function drawVictory () {
   drawText('Press space to continue', 0, 200, 8)
 }
 
+function drawButton (button) {
+  let coordMap = {
+    start: convertCoords(button.x, button.y),
+    size: convertCoords(button.w, button.h)
+  }
+  const center = (canvas.width / 2) - (coordMap.size.x / 2)
+  ctx.drawImage(button.img.img, center + coordMap.start.x, coordMap.start.y,
+    coordMap.size.x, coordMap.size.y)
+}
+
 function drawWelcome () {
   draw(true)
   drawText('Pong Game', 0, 60, 30)
-  drawText('by Peter Marshall', 0, 80, 7)
-  drawText('Controls:', 0, 110, 10)
-  drawText('Space: Start game', 0, 125, 7)
-  drawText('W and S: Move left paddle', 0, 134, 7)
-  drawText('Up and Down arrows: Move right paddle', 0, 142, 5)
-  drawText('Press space to begin', 0, 190, 8)
+  drawText('by Peter Marshall', 0, 77, 7)
+  buttons["freeplay"].draw()
+  buttons["firstTo10"].draw()
+  buttons["bot"].draw()
+  drawText('Controls:', 0, 190, 10)
+  drawText('Esc: Back to menu', 0, 200, 7)
+  drawText('W and S: Move left paddle', 0, 208, 7)
+  drawText('Up and Down arrows: Move right paddle', 0, 215, 5)
+}
+
+function drawStarting () {
+  draw(true)
+  drawText('Game over!', 0, 60, 30)
+  if (winner === 'l') {
+    drawText('Blue wins', 0, 110, 10)
+  } else {
+    drawText('Red wins', 0, 110, 10)
+  }
+  drawText('Press space to continue', 0, 200, 8)
 }

@@ -5,7 +5,7 @@ function onkeydown (e) {
   switch (e.code) {
     case 'Space':
       console.log('Space pressed')
-      if (gameState === 'gameover' || gameState === 'stopped') {
+      if (gameState === 'gameover' || gameState === 'starting') {
         startGame()
       }
       if (gameState === 'victory') {
@@ -32,6 +32,15 @@ function onkeydown (e) {
       console.log('S key pressed')
       paddleMovement[0] = 1
       break;
+    case 'Escape':
+      console.log('Escape key pressed')
+      // Stop the game if it's not stopped
+      if (gameState !== 'stopped') {
+        resetGame()
+        // Play lose sound
+        stopSoundEffects()
+        soundEffects['pause'].play()
+      }
     default:
 
   }
@@ -65,5 +74,14 @@ function onkeyup (e) {
   }
 }
 
+function onclick (e) {
+  for (var i in buttons) {
+    if (buttons[i].onclick && buttons[i].checkClick(e.offsetX, e.offsetY)) {
+      buttons[i].onclick()
+    }
+  }
+}
+
 window.addEventListener('keydown', onkeydown)
 window.addEventListener('keyup', onkeyup)
+canvas.addEventListener('click', onclick)

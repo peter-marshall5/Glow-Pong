@@ -42,6 +42,9 @@ function gameLoop () {
   } else if(gameState === 'gameover') {
     // Show game over screen
     drawGameOver()
+  } else if (gameState === 'starting') {
+    // Show starting screen
+    drawStarting()
   } else if(gameState === 'victory') {
     // Show victory screen
     drawVictory()
@@ -193,12 +196,38 @@ function startGame () {
   gameState = 'playing'
 }
 
+function showStart () {
+  gameState = 'starting'
+  disableButtons()
+}
+
 function resetGame () {
   scores[0] = 0
   scores[1] = 0
   resetPaddles()
   ball.hidden = true
   gameState = 'stopped'
+  enableButtons()
+}
+
+buttons['freeplay'].onclick = function() {
+  if (gameState === 'stopped') {
+    // Set game mode
+    gameMode = 'normal'
+    showStart()
+    // Play sound effect
+    soundEffects['menuSelect'].play()
+  }
+}
+
+buttons['firstTo10'].onclick = function() {
+  if (gameState === 'stopped') {
+    // Set game mode
+    gameMode = 'firstTo10'
+    showStart()
+    // Play sound effect
+    soundEffects['menuSelect'].play()
+  }
 }
 
 resize()
