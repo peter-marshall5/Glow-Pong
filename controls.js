@@ -39,7 +39,7 @@ function onkeydown (e) {
         resetGame()
         // Play lose sound
         stopSoundEffects()
-        soundEffects['pause'].play()
+        soundEffects['menuCancel'].play()
       }
     default:
 

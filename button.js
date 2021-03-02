@@ -73,7 +73,7 @@ function enableButtons () {
   }
 }
 
-new Button('assets/images/icon.png', 'freeplay', 0, 90, 100, 23)
-new Button('assets/images/icon.png', 'firstTo10', 0, 118, 100, 23)
-new Button('assets/images/icon.png', 'bot', 0, 146, 100, 23)
+new Button('assets/images/endless.png', 'freeplay', 0, 90, 100, 23)
+new Button('assets/images/first_to_10.png', 'firstTo10', 0, 118, 100, 23)
+new Button('assets/images/play_against_bot.png', 'bot', 0, 146, 100, 23)
 loadImages()

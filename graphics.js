@@ -189,11 +189,12 @@ function drawWelcome () {
 
 function drawStarting () {
   draw(true)
-  drawText('Game over!', 0, 60, 30)
-  if (winner === 'l') {
-    drawText('Blue wins', 0, 110, 10)
-  } else {
-    drawText('Red wins', 0, 110, 10)
+  if (gameMode === 'normal') {
+    drawText('Endless Mode', 0, 60, 30)
+  } else if (gameMode === 'firstTo10') {
+    drawText('First to 10', 0, 60, 30)
+  } else if (gameMode === 'Bot') {
+    drawText('Play against Bot', 0, 60, 30)
   }
-  drawText('Press space to continue', 0, 200, 8)
+  drawText('Press space to begin', 0, 200, 8)
 }
