@@ -80,9 +80,10 @@ function checkCollisions() {
       gameState = 'failed'
       // Store that the right player won
       winner = 'r'
-    } else {
+    } else if(ballMovement[0] < 0) {
       // Make the ball bounce off the paddle
       ballMovement[0] = xVelocity * (Math.random() * 1 + 0.6)
+      console.log('Left bounce')
       soundEffects["ballHit1"].play()
     }
   }
@@ -93,9 +94,10 @@ function checkCollisions() {
       winner = 'l'
       // Set the game state
       gameState = 'failed'
-    } else {
+    } else if(ballMovement[0] > 0) {
       // Make the ball bounce off the paddle
       ballMovement[0] = -xVelocity * (Math.random() * 1 + 0.6)
+      console.log('Right bounce')
       soundEffects["ballHit2"].play()
     }
   }
@@ -140,16 +142,22 @@ function randomFieldCoords (leftHalf) {
 }
 
 function startGame () {
+  // Game over sound may still be playing
   stopSoundEffects()
+  // Play sound effect
   soundEffects["placingBall"].play()
+  // Show ball
   ball.hidden = false
+  // Move ball to random place
   let randomCoords = randomFieldCoords()
   ball.move(randomCoords.x, randomCoords.y)
+  // Set the ball X velocity
   if (randomCoords.x > 200) {
     ballMovement[0] = -xVelocity
   } else {
     ballMovement[0] = xVelocity
   }
+  // Set the ball Y velocity
   if (Math.random() > 0.5) {
     ballMovement[1] = yVelocity
   } else {
@@ -160,5 +168,4 @@ function startGame () {
 
 resize()
 document.body.onresize = resize
-//startGame()
 gameLoop()
