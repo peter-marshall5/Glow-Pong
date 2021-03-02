@@ -9,7 +9,6 @@ let backgroundColor = ''
 let textColor = new Color(255, 255, 255)
 let textBlurColor = new Color(100, 80, 80)
 let spriteColor = new Color(255, 128, 128)
-let paddleBlurColor = new Color(160, 80, 80)
 let textBlur = 30
 
 function resize() {
@@ -57,6 +56,40 @@ function drawSprite (that) {
     start: convertCoords(that.position.x, that.position.y),
     size: convertCoords(that.size.w, that.size.h)
   }
+  if (that.flashing) {
+    that.flashIntensity += 0.2
+    if(that.flashIntensity > 1) {
+      that.flashIntensity = 1
+      that.flashing = false
+    }
+  } else if (that.flashIntensity > 0) {
+    that.flashIntensity -= 0.1
+    if(that.flashIntensity < 0) {
+      that.flashIntensity = 0
+    }
+  }
+  // Set color
+  ctx.fillStyle='rgb('
+   + that.color.r + ','
+   + that.color.g + ','
+   + that.color.b + ')'
+  if (that.flashIntensity > 0) {
+    // Add glow
+    // Don't oversaturate glow at first
+    ctx.shadowColor = 'rgba('
+     + that.flashColor.r + ','
+     + that.flashColor.g + ','
+     + that.flashColor.b + ','
+     + (that.flashIntensity * 0.8) + ')'
+    ctx.shadowOffsetX = 0
+    ctx.shadowOffsetY = 0
+    ctx.shadowBlur = that.flashIntensity * 30 + 10
+    // Draw shadow twice to make glow brighter
+    ctx.fillRect(coordMap.start.x, coordMap.start.y,
+     coordMap.size.x, coordMap.size.y)
+    ctx.fillRect(coordMap.start.x, coordMap.start.y,
+     coordMap.size.x, coordMap.size.y)
+  }
   if (that.blurRadius) {
     const blurRadius = convertCoords(that.blurRadius).x
     // Add glow
@@ -68,11 +101,6 @@ function drawSprite (that) {
     ctx.shadowOffsetY = 0
     ctx.shadowBlur = blurRadius
   }
-  // Set color
-  ctx.fillStyle='rgb('
-   + that.color.r + ','
-   + that.color.g + ','
-   + that.color.b + ')'
   // Draw rectangle
   ctx.fillRect(coordMap.start.x, coordMap.start.y,
   coordMap.size.x, coordMap.size.y)

@@ -3,13 +3,16 @@
 let sprites = []
 
 class Sprite {
-  constructor(x, y, width, height, color, blurRadius, blurColor) {
+  constructor(x, y, width, height, color, blurRadius, blurColor, flashColor) {
     this.position = {x: x, y: y}
     this.size = {w: width, h: height}
     this.color = color || spriteColor
     this.blurRadius = blurRadius || 0
     this.blurColor = blurColor || null
     this.hidden = false
+    this.flashing = false
+    this.flashIntensity = 0
+    this.flashColor = flashColor || this.color
     sprites.push(this)
   }
 
@@ -92,6 +95,10 @@ class Sprite {
       return true
     }
     return false
+  }
+
+  flash() {
+    this.flashing = true
   }
 
   draw() {

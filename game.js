@@ -25,11 +25,11 @@ let paddleColor = new Color(255, 255, 255)
 let divider = new Sprite(199.5, topWall, 1, 225 - topWall - (225 - bottomWall),
   null, 10, new Color(255, 64, 64))
 let ball = new Sprite(50, 50, 10, 10, new Color(127, 255, 0),
-  12, new Color(100, 180, 0))
+  5, new Color(80, 100, 0), new Color(4, 206, 54))
 ball.hidden = true
 let leftPaddle = new Sprite(leftWall, 20, 6, paddleHeight, paddleColor,
-    5, paddleBlurColor)
-let rightPaddle = new Sprite(rightWall, 20, 6, paddleHeight, paddleColor, 5, paddleBlurColor)
+    5, new Color(80, 80, 160), new Color(80, 80, 255))
+let rightPaddle = new Sprite(rightWall, 20, 6, paddleHeight, paddleColor, 5, new Color(160, 80, 80), new Color(255, 80, 80))
 resetPaddles()
 
 // Runs before every frame is drawn on-screen
@@ -73,6 +73,8 @@ function checkCollisions() {
     console.log('Horizontal collision')
     ballMovement[1] = -ballMovement[1]
     soundEffects["borderHit"].play()
+    // Make ball flash
+    ball.flash()
   }
   if(ball.checkLeftPass(leftWall + leftPaddle.size.w)) {
     if (!ball.checkVerticalCollision(leftPaddle)) {
@@ -86,6 +88,8 @@ function checkCollisions() {
       ballMovement[0] = xVelocity * (Math.random() * 1 + 0.6)
       console.log('Left bounce')
       soundEffects["ballHit1"].play()
+      // Flash the left paddle
+      leftPaddle.flash()
     }
   }
   if(ball.checkRightPass(rightWall)) {
@@ -100,6 +104,8 @@ function checkCollisions() {
       ballMovement[0] = -xVelocity * (Math.random() * 1 + 0.6)
       console.log('Right bounce')
       soundEffects["ballHit2"].play()
+      // Flash the right paddle
+      rightPaddle.flash()
     }
   }
 }
