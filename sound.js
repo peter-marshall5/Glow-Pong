@@ -1,5 +1,10 @@
 // Handles sound effects
 
+// Context for web audio
+let actx = new AudioContext()
+// Gain node to set global volume
+let volume = actx.createGain()
+volume.connect(actx.destination)
 // Object to store sound effects
 let soundEffects = {}
 // Stores how many sound effects loaded so far
@@ -10,22 +15,29 @@ class SoundEffect {
     soundEffects[name] = this
     this.name = name
     this.url = url
-    // Create media element
-    this.audioElement = new Audio()
-    // Set src property to URL of sound effect
-    this.audioElement.src = url
   }
 
-  play() {
+  load() {
+    return fetch(this.url)
+      .then(response => response.arrayBuffer())
+      .then(data => actx.decodeAudioData(data))
+      .then(buffer => this.buffer = buffer)
+  }
+
+  play(n) {
+    // Create buffer source
+    this.source = actx.createBufferSource()
+    // Set the audio buffer
+    this.source.buffer = this.buffer
+    // Connect to gain node
+    this.source.connect(volume)
     // Play the sound
-    this.audioElement.play()
+    this.source.start(actx.currentTime, n || 0.01)
   }
 
   stop() {
-    // Pause the sound
-    this.audioElement.pause()
-    // Seek back to the start
-    this.audioElement.currentTime = 0
+    // Stop the sound
+    this.source.stop()
   }
 }
 
@@ -37,8 +49,15 @@ function stopSoundEffects () {
   }
 }
 
+function loadSoundEffects () {
+  for (let i in soundEffects) {
+    // Load the sound effect
+    soundEffects[i].load()
+  }
+}
+
 new SoundEffect('assets/sounds/border_hit.ogg', 'borderHit')
-new SoundEffect('assets/sounds/goal', 'goal')
+new SoundEffect('assets/sounds/goal.ogg', 'goal')
 new SoundEffect('assets/sounds/menu_cancel.ogg', 'menuCancel')
 new SoundEffect('assets/sounds/menu_select.ogg', 'menuSelect')
 new SoundEffect('assets/sounds/pause.ogg', 'pause')
@@ -46,3 +65,4 @@ new SoundEffect('assets/sounds/placing_puck.ogg', 'placingBall')
 new SoundEffect('assets/sounds/puck_hit1.ogg', 'ballHit1')
 new SoundEffect('assets/sounds/puck_hit2.ogg', 'ballHit2')
 new SoundEffect('assets/sounds/show_level.ogg', 'showLevel')
+loadSoundEffects()
