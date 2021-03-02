@@ -36,8 +36,10 @@ class SoundEffect {
   }
 
   stop() {
-    // Stop the sound
-    this.source.stop()
+    if (this.source) {
+      // Stop the sound
+      this.source.stop()
+    }
   }
 }
 

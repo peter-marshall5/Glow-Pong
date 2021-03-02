@@ -140,6 +140,7 @@ function randomFieldCoords (leftHalf) {
 }
 
 function startGame () {
+  stopSoundEffects()
   soundEffects["placingBall"].play()
   ball.hidden = false
   let randomCoords = randomFieldCoords()
