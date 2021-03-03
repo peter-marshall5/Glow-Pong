@@ -199,7 +199,7 @@ function drawStarting () {
     drawText('Endless Mode', 0, 60, 30)
   } else if (gameMode === 'firstTo10') {
     drawText('First to 10', 0, 60, 30)
-  } else if (gameMode === 'Bot') {
+  } else if (gameMode === 'bot') {
     drawText('Play against Bot', 0, 60, 30)
   }
   drawText('Press space to begin', 0, 200, 8)

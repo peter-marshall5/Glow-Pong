@@ -55,6 +55,9 @@ function gameLoop () {
     drawVictory()
   } else {
     if (gameState === 'playing') {
+      if (gameMode === 'bot') {
+        doBotTick()
+      }
       checkCollisions()
     } else if (gameState === 'failed') {
       if (ball.checkLeftPass(0 - ball.size.w) ||
@@ -231,6 +234,16 @@ buttons['firstTo10'].onclick = function() {
   if (gameState === 'stopped') {
     // Set game mode
     gameMode = 'firstTo10'
+    showStart()
+    // Play sound effect
+    soundEffects['menuSelect'].play()
+  }
+}
+
+buttons['bot'].onclick = function() {
+  if (gameState === 'stopped') {
+    // Set game mode
+    gameMode = 'bot'
     showStart()
     // Play sound effect
     soundEffects['menuSelect'].play()
