@@ -145,7 +145,7 @@ function doMovementTick(speedMultiplier) {
     left = 0 - ball.size.w
     right = 400 + ball.size.w
   }
-  // Restrict the ball to the play area on the X axis
+  // Restrict the ball to the play area on the X and Y axis
   ball.move(Math.max(left, Math.min(right, ball.position.x +
     ballMovement[0] * speedMultiplier)),
     Math.max(topWall, Math.min(bottomWall, ball.position.y +
