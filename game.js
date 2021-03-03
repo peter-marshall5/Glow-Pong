@@ -1,10 +1,5 @@
 // Main game logic
 
-const leftWall = 20
-const rightWall = 374
-const topWall = 20
-const bottomWall = 205
-const paddleHeight = 50
 const xVelocity = 4
 const yVelocity = 2
 const paddleSpeed = 6

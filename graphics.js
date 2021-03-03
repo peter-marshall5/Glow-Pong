@@ -5,6 +5,12 @@ const ctx = canvas.getContext('2d')
 let cWidth = 0
 let cHeight = 0
 
+const leftWall = 20
+const rightWall = 374
+const topWall = 20
+const bottomWall = 205
+const paddleHeight = 50
+
 let backgroundColor = ''
 let textColor = new Color(255, 255, 255)
 let textBlurColor = new Color(100, 80, 80)
