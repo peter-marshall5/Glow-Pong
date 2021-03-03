@@ -11,6 +11,8 @@ const paddleSpeed = 6
 // How far the ball will spawn from the wall
 const spawnPadding = 20
 
+// Store the time when the last frame was rendered
+let lastFrameTime = 0
 // Store the ball's current velocity
 let ballMovement = [0, 0]
 // Are the paddles moving?
@@ -36,6 +38,14 @@ resetPaddles()
 
 // Runs before every frame is drawn on-screen
 function gameLoop () {
+  // Get the time that this frame was rendered
+  let currentTime = performance.now()
+  // Calculate the time difference from last frame
+  let frameDelta = currentTime - lastFrameTime
+  // Calculate how much to speed up / slow down the game
+  let speedMultiplier = calculateSpeedMultiplier(frameDelta)
+  // Store the time that this frame was rendered
+  lastFrameTime = currentTime
   if (gameState === 'stopped') {
     // Show welcome screen
     drawWelcome()
@@ -76,8 +86,8 @@ function gameLoop () {
         ball.hidden = true
       }
     }
-    doMovementTick()
-    doPaddleTick()
+    doMovementTick(speedMultiplier)
+    doPaddleTick(speedMultiplier)
     draw()
   }
   requestAnimationFrame(gameLoop)
@@ -126,7 +136,7 @@ function checkCollisions() {
   }
 }
 
-function doMovementTick() {
+function doMovementTick(speedMultiplier) {
   let left, right
   if (gameState === 'playing') {
     left = leftWall
@@ -136,24 +146,26 @@ function doMovementTick() {
     right = 400 + ball.size.w
   }
   // Restrict the ball to the play area on the X axis
-  ball.move(Math.max(left, Math.min(right, ball.position.x + ballMovement[0])),
-    Math.max(topWall, Math.min(bottomWall, ball.position.y + ballMovement[1])))
+  ball.move(Math.max(left, Math.min(right, ball.position.x +
+    ballMovement[0] * speedMultiplier)),
+    Math.max(topWall, Math.min(bottomWall, ball.position.y +
+    ballMovement[1] * speedMultiplier)))
 }
 
-function doPaddleTick () {
+function doPaddleTick (speedMultiplier) {
   if (paddleMovement[0] == 1) {
-    leftPaddle.move(null, Math.min(leftPaddle.position.y + paddleSpeed,
-      bottomWall - leftPaddle.size.h))
+    leftPaddle.move(null, Math.min(leftPaddle.position.y + paddleSpeed
+      * speedMultiplier, bottomWall - leftPaddle.size.h))
   } else if (paddleMovement[0] == 2) {
-    leftPaddle.move(null, Math.max(leftPaddle.position.y - paddleSpeed,
-      topWall))
+    leftPaddle.move(null, Math.max(leftPaddle.position.y - paddleSpeed *
+      speedMultiplier, topWall))
   }
   if (paddleMovement[1] == 1) {
-    rightPaddle.move(null, Math.min(rightPaddle.position.y + paddleSpeed,
-      bottomWall - rightPaddle.size.h))
+    rightPaddle.move(null, Math.min(rightPaddle.position.y + paddleSpeed
+      * speedMultiplier, bottomWall - rightPaddle.size.h))
   } else if (paddleMovement[1] == 2) {
-    rightPaddle.move(null, Math.max(rightPaddle.position.y - paddleSpeed,
-      topWall))
+    rightPaddle.move(null, Math.max(rightPaddle.position.y - paddleSpeed
+      * speedMultiplier, topWall))
   }
 }
 

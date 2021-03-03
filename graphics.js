@@ -198,3 +198,11 @@ function drawStarting () {
   }
   drawText('Press space to begin', 0, 200, 8)
 }
+
+function calculateSpeedMultiplier (frameDelta) {
+  let framerate = 1 / frameDelta * 1000
+  console.log(framerate)
+  let multiplier = (60 / framerate)
+  console.log(multiplier * 4)
+  return multiplier
+}
