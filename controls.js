@@ -8,7 +8,7 @@ function onkeydown (e) {
       if (window.getGameState() === 'gameover' || window.getGameState() === 'starting') {
         window.startGame()
       }
-      if (window.getwindow.getGameState() === 'victory') {
+      if (window.getGameState() === 'victory') {
         window.resetGame()
       }
       break
@@ -39,15 +39,15 @@ function onkeydown (e) {
     case 'Escape':
       console.log('Escape key pressed')
       // Stop the game if it's not stopped
-      if (window.getwindow.getGameState() !== 'stopped') {
+      if (window.getGameState() !== 'stopped') {
         window.resetGame()
         // Play lose sound
         window.stopSoundEffects()
         window.soundEffects.menuCancel.play()
       }
       break
-      default:
-    break
+    default:
+      break
   }
 }
 
@@ -61,7 +61,7 @@ function onkeyup (e) {
       } else {
         window.paddleMovement[0] = 0
       }
-    break
+      break
     case 'ArrowDown':
       console.log('Down arrow released')
       if (window.getGameMode() !== 'bot') {

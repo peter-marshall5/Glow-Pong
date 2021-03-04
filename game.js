@@ -252,15 +252,16 @@ window.buttons.bot.onclick = function() {
 
 resize()
 document.body.onresize = resize
-gameLoop()
 
 window.ballMovement = ballMovement
 window.paddleMovement = paddleMovement
 window.ball = ball
 window.rightPaddle = rightPaddle
-window.scores = scores
 window.setGameState = function (s) {
   gameState = s
+}
+window.getGameMode = function () {
+  return gameMode
 }
 window.getGameState = function () {
   return gameState
@@ -270,3 +271,6 @@ window.getWinner = function () {
 }
 window.startGame = startGame
 window.resetGame = resetGame
+window.scores = scores
+
+gameLoop()
