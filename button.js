@@ -19,7 +19,6 @@ class ImageLoader {
 
 class Button {
   constructor (url, name, x, y, width, height) {
-    buttons[name] = this
     this.name = name
     this.img = new ImageLoader(url, name)
     this.x = x
@@ -73,9 +72,9 @@ function enableButtons () {
   }
 }
 
-let freeplay = new Button('assets/images/endless.png', 'freeplay', 0, 90, 100, 23)
-let ft10 = new Button('assets/images/first_to_10.png', 'firstTo10', 0, 118, 100, 23)
-let bot = new Button('assets/images/play_against_bot.png', 'bot', 0, 146, 100, 23)
+buttons.freeplay = new Button('assets/images/endless.png', 'freeplay', 0, 90, 100, 23)
+buttons.firstTo10 = new Button('assets/images/first_to_10.png', 'firstTo10', 0, 118, 100, 23)
+buttons.bot = new Button('assets/images/play_against_bot.png', 'bot', 0, 146, 100, 23)
 loadImages()
 
 window.disableButtons = disableButtons

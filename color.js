@@ -5,3 +5,5 @@ class Color {
     this.b = blue
   }
 }
+
+window.whiteColor = new Color(255, 255, 255)

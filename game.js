@@ -151,17 +151,17 @@ function doMovementTick(speedMultiplier) {
 }
 
 function doPaddleTick (speedMultiplier) {
-  if (paddleMovement[0] == 1) {
+  if (paddleMovement[0] === 1) {
     leftPaddle.move(null, Math.min(leftPaddle.position.y + paddleSpeed
       * speedMultiplier, bottomWall - leftPaddle.size.h))
-  } else if (paddleMovement[0] == 2) {
+  } else if (paddleMovement[0] === 2) {
     leftPaddle.move(null, Math.max(leftPaddle.position.y - paddleSpeed *
       speedMultiplier, topWall))
   }
-  if (paddleMovement[1] == 1) {
+  if (paddleMovement[1] === 1) {
     rightPaddle.move(null, Math.min(rightPaddle.position.y + paddleSpeed
       * speedMultiplier, bottomWall - rightPaddle.size.h))
-  } else if (paddleMovement[1] == 2) {
+  } else if (paddleMovement[1] === 2) {
     rightPaddle.move(null, Math.max(rightPaddle.position.y - paddleSpeed
       * speedMultiplier, topWall))
   }
@@ -258,3 +258,13 @@ window.ballMovement = ballMovement
 window.paddleMovement = paddleMovement
 window.ball = ball
 window.rightPaddle = rightPaddle
+window.leftWall = leftWall
+window.rightWall = rightWall
+window.topWall = topWall
+window.bottomWall = bottomWall
+window.setGameState = function (s) {
+  gameState = s
+}
+window.getGameState = function () {
+  return gameState
+}
