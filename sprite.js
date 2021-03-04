@@ -1,12 +1,12 @@
 // Handles sprite objects
 
-let sprites = []
+const sprites = []
 
 class Sprite {
-  constructor(x, y, width, height, color, blurRadius, blurColor, flashColor) {
-    this.position = {x: x, y: y}
-    this.size = {w: width, h: height}
-    this.color = color || spriteColor
+  constructor (x, y, width, height, color, blurRadius, blurColor, flashColor) {
+    this.position = { x: x, y: y }
+    this.size = { w: width, h: height }
+    this.color = color || window.spriteColor
     this.blurRadius = blurRadius || 0
     this.blurColor = blurColor || null
     this.hidden = false
@@ -16,7 +16,7 @@ class Sprite {
     sprites.push(this)
   }
 
-  move(x, y, mode) {
+  move (x, y, mode) {
     if (mode === 'add') {
       this.position.x += x
       this.position.y += y
@@ -24,13 +24,13 @@ class Sprite {
       if (typeof x === 'number') {
         this.position.x = x
       }
-      if (typeof y ==='number') {
+      if (typeof y === 'number') {
         this.position.y = y
       }
     }
   }
 
-  resize(width, height, mode) {
+  resize (width, height, mode) {
     if (mode === 'add') {
       this.size.w += width
       this.size.h += height
@@ -38,21 +38,21 @@ class Sprite {
       if (typeof x === 'number') {
         this.size.w = width
       }
-      if (typeof y ==='number') {
+      if (typeof y === 'number') {
         this.size.h = height
       }
     }
   }
 
-  color(color) {
+  color (color) {
     this.color = color
   }
 
-  checkCollision(otherSprite) {
-    return new Collision(this, otherSprite).checkCollision()
+  checkCollision (otherSprite) {
+    // Remove this
   }
 
-  checkWallCollision(top, bottom, left, right) {
+  checkWallCollision (top, bottom, left, right) {
     if (this.position.x <= left ||
     this.position.x + this.size.w >= right ||
     this.position.y <= top ||
@@ -62,22 +62,23 @@ class Sprite {
     return false
   }
 
-  checkLeftPass(left) {
-    if(this.position.x <= left) {
+  checkLeftPass (left) {
+    if (this.position.x <= left) {
       return true
     }
     return false
   }
-  checkRightPass(right) {
-    if(this.position.x + this.size.w >= right) {
+
+  checkRightPass (right) {
+    if (this.position.x + this.size.w >= right) {
       return true
     }
     return false
   }
 
   // Checks that a sprite is within the top and bottom of the play area
-  checkBounds(top, bottom) {
-    if(this.position.y <= top ||
+  checkBounds (top, bottom) {
+    if (this.position.y <= top ||
     this.position.y + this.size.h > bottom) {
       return false
     }
@@ -85,25 +86,26 @@ class Sprite {
   }
 
   // Checks if a sprite is between two points on the Y axis
-  checkVerticalCollision(top, bottom) {
+  checkVerticalCollision (top, bottom) {
     if (typeof top === 'object') {
       bottom = top.position.y + top.size.h
       top = top.position.y
     }
-    if(this.position.y < bottom &&
+    if (this.position.y < bottom &&
     this.position.y + this.size.h > top) {
       return true
     }
     return false
   }
 
-  flash() {
+  flash () {
     this.flashing = true
   }
 
-  draw() {
-    drawSprite(this)
+  draw () {
+    window.drawSprite(this)
   }
 }
 
 window.sprites = sprites
+window.Sprite = sprite

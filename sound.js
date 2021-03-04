@@ -76,3 +76,4 @@ addSoundEffect('assets/sounds/winner.ogg', 'winner')
 loadSoundEffects()
 
 window.stopSoundEffects = stopSoundEffects
+window.soundEffects = soundEffects
