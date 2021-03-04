@@ -258,9 +258,14 @@ window.ballMovement = ballMovement
 window.paddleMovement = paddleMovement
 window.ball = ball
 window.rightPaddle = rightPaddle
+window.scores = scores
 window.setGameState = function (s) {
   gameState = s
 }
 window.getGameState = function () {
   return gameState
 }
+window.getWinner = function () {
+  return winner
+}
+window.startGame = startGame

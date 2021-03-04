@@ -105,3 +105,5 @@ class Sprite {
     drawSprite(this)
   }
 }
+
+window.sprites = sprites
