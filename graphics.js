@@ -42,7 +42,7 @@ function resize () {
 function draw (faded) {
   ctx.fillStyle = backgroundColor
   ctx.globalAlpha = 1
-  ctx.fillRect(0 , 0, canvas.width, canvas.height)
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
   if (faded) {
     ctx.globalAlpha = 0.4
   }

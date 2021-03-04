@@ -269,3 +269,4 @@ window.getWinner = function () {
   return winner
 }
 window.startGame = startGame
+window.resetGame = resetGame

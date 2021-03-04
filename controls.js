@@ -6,15 +6,15 @@ function onkeydown (e) {
     case 'Space':
       console.log('Space pressed')
       if (window.getGameState() === 'gameover' || window.getGameState() === 'starting') {
-        startGame()
+        window.startGame()
       }
       if (window.getwindow.getGameState() === 'victory') {
-        resetGame()
+        window.resetGame()
       }
       break
     case 'ArrowUp':
       console.log('Up arrow pressed')
-      if (gameMode !== 'bot') {
+      if (window.getGameMode() !== 'bot') {
         window.paddleMovement[1] = 2
       } else {
         window.paddleMovement[0] = 2
@@ -22,7 +22,7 @@ function onkeydown (e) {
       break
     case 'ArrowDown':
       console.log('Down arrow pressed')
-      if (gameMode !== 'bot') {
+      if (window.getGameMode() !== 'bot') {
         window.paddleMovement[1] = 1
       } else {
         window.paddleMovement[0] = 1
@@ -40,30 +40,31 @@ function onkeydown (e) {
       console.log('Escape key pressed')
       // Stop the game if it's not stopped
       if (window.getwindow.getGameState() !== 'stopped') {
-        resetGame()
+        window.resetGame()
         // Play lose sound
-        stopSoundEffects()
-        soundEffects['menuCancel'].play()
+        window.stopSoundEffects()
+        window.soundEffects.menuCancel.play()
       }
-    default:
+      break
+      default:
     break
   }
 }
 
 function onkeyup (e) {
-  //console.log('Key up:', e.code)
+  // console.log('Key up:', e.code)
   switch (e.code) {
     case 'ArrowUp':
       console.log('Up arrow released')
-      if (gameMode !== 'bot') {
+      if (window.getGameMode() !== 'bot') {
         window.paddleMovement[1] = 0
       } else {
         window.paddleMovement[0] = 0
       }
-      break
-      case 'ArrowDown':
+    break
+    case 'ArrowDown':
       console.log('Down arrow released')
-      if (gameMode !== 'bot') {
+      if (window.getGameMode() !== 'bot') {
         window.paddleMovement[1] = 0
       } else {
         window.paddleMovement[0] = 0
@@ -72,13 +73,13 @@ function onkeyup (e) {
     case 'KeyW':
       console.log('W key released')
       window.paddleMovement[0] = 0
-      break;
+      break
     case 'KeyS':
       console.log('S key released')
       window.paddleMovement[0] = 0
       break
     default:
-    break
+      break
   }
 }
 
@@ -92,4 +93,4 @@ function onclick (e) {
 
 window.addEventListener('keydown', onkeydown)
 window.addEventListener('keyup', onkeyup)
-canvas.addEventListener('click', onclick)
+window.canvas.addEventListener('click', onclick)
