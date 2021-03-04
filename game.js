@@ -9,9 +9,9 @@ const spawnPadding = 20
 // Store the time when the last frame was rendered
 let lastFrameTime = 0
 // Store the ball's current velocity
-let ballMovement = [0, 0]
+const ballMovement = [0, 0]
 // Are the paddles moving?
-let paddleMovement = [0, 0]
+const paddleMovement = [0, 0]
 // Store the state of the game
 let gameState = 'stopped'
 // Store the gamemode
@@ -19,44 +19,44 @@ let gameMode = 'firstTo10'
 // Store who won when the ball passes a paddle
 let winner = ''
 // Store the player scores, left -> right
-let scores = [0, 0]
-let paddleColor = new Color(255, 255, 255)
-let divider = new Sprite(199.5, topWall, 1, 225 - topWall - (225 - bottomWall),
-  null, 10, new Color(255, 64, 64))
-let ball = new Sprite(50, 50, 10, 10, new Color(127, 255, 0),
-  5, new Color(80, 100, 0), new Color(4, 255, 54))
+const scores = [0, 0]
+const paddleColor = new window.Color(255, 255, 255)
+const divider = new window.Sprite(199.5, window.topWall, 1, 225 - window.topWall - (225 - window.bottomWall),
+  null, 10, new window.Color(255, 64, 64))
+let ball = new window.Sprite(50, 50, 10, 10, new window.Color(127, 255, 0),
+  5, new window.Color(80, 100, 0), new window.Color(4, 255, 54))
 ball.hidden = true
-let leftPaddle = new Sprite(leftWall, 20, 6, paddleHeight, paddleColor,
-    5, new Color(80, 80, 160), new Color(80, 80, 205))
-let rightPaddle = new Sprite(rightWall, 20, 6, paddleHeight, paddleColor, 5, new Color(160, 80, 80), new Color(205, 80, 80))
+const leftPaddle = new window.Sprite(window.leftWall, 20, 6, window.paddleHeight, paddleColor,
+    5, new window.Color(80, 80, 160), new window.Color(80, 80, 205))
+const rightPaddle = new window.Sprite(window.rightWall, 20, 6, window.paddleHeight, paddleColor, 5, new window.Color(160, 80, 80), new window.Color(205, 80, 80))
 resetPaddles()
 
 // Runs before every frame is drawn on-screen
 function gameLoop () {
   // Get the time that this frame was rendered
-  let currentTime = performance.now()
+  const currentTime = performance.now()
   // Calculate the time difference from last frame
-  let frameDelta = currentTime - lastFrameTime
+  const frameDelta = currentTime - lastFrameTime
   // Calculate how much to speed up / slow down the game
-  let speedMultiplier = calculateSpeedMultiplier(frameDelta)
+  const speedMultiplier = window.calculateSpeedMultiplier(frameDelta)
   // Store the time that this frame was rendered
   lastFrameTime = currentTime
   if (gameState === 'stopped') {
     // Show welcome screen
-    drawWelcome()
-  } else if(gameState === 'gameover') {
+    window.drawWelcome()
+  } else if (gameState === 'gameover') {
     // Show game over screen
-    drawGameOver()
+    window.drawGameOver()
   } else if (gameState === 'starting') {
     // Show starting screen
-    drawStarting()
-  } else if(gameState === 'victory') {
+    window.drawStarting()
+  } else if (gameState === 'victory') {
     // Show victory screen
-    drawVictory()
+    window.drawVictory()
   } else {
     if (gameState === 'playing') {
       if (gameMode === 'bot') {
-        doBotTick()
+        window.doBotTick()
       }
       checkCollisions()
     } else if (gameState === 'failed') {
@@ -71,12 +71,12 @@ function gameLoop () {
         }
         if (gameMode === 'firstTo10' && (scores[0] > 9 || scores[1] > 9)) {
           // Play winner sound
-          soundEffects["winner"].play()
+          window.soundEffects.winner.play()
           // Set game state
           gameState = 'victory'
         } else {
           // Play goal sound
-          soundEffects["goal"].play()
+          window.soundEffects.goal.play()
           // Set game state
           gameState = 'gameover'
         }
@@ -86,59 +86,59 @@ function gameLoop () {
     }
     doMovementTick(speedMultiplier)
     doPaddleTick(speedMultiplier)
-    draw()
+    window.draw()
   }
   requestAnimationFrame(gameLoop)
 }
 
-function checkCollisions() {
-  if(!ball.checkBounds(topWall, bottomWall)) {
+function checkCollisions () {
+  if (!ball.checkBounds(window.topWall, window.bottomWall)) {
     // Ball hit the top or bottom
     console.log('Horizontal collision')
     ballMovement[1] = -ballMovement[1]
-    soundEffects["borderHit"].play()
+    window.soundEffects.borderHit.play()
     // Make ball flash
     ball.flash()
   }
-  if(ball.checkLeftPass(leftWall + leftPaddle.size.w)) {
+  if (ball.checkLeftPass(window.leftWall + leftPaddle.size.w)) {
     if (!ball.checkVerticalCollision(leftPaddle)) {
       // The left paddle failed to deflect the ball
       // Set the game state
       gameState = 'failed'
       // Store that the right player won
       winner = 'r'
-    } else if(ballMovement[0] < 0) {
+    } else if (ballMovement[0] < 0) {
       // Make the ball bounce off the paddle
       ballMovement[0] = xVelocity * (Math.random() * 1 + 0.6)
       console.log('Left bounce')
-      soundEffects["ballHit1"].play()
+      window.soundEffects.ballHit1.play()
       // Flash the left paddle
       leftPaddle.flash()
     }
   }
-  if(ball.checkRightPass(rightWall)) {
-    if(!ball.checkVerticalCollision(rightPaddle)) {
+  if (ball.checkRightPass(window.rightWall)) {
+    if (!ball.checkVerticalCollision(rightPaddle)) {
       // The right paddle failed to deflect the ball
       // Store that the left player won
       winner = 'l'
       // Set the game state
       gameState = 'failed'
-    } else if(ballMovement[0] > 0) {
+    } else if (ballMovement[0] > 0) {
       // Make the ball bounce off the paddle
       ballMovement[0] = -xVelocity * (Math.random() * 1 + 0.6)
       console.log('Right bounce')
-      soundEffects["ballHit2"].play()
+      window.soundEffects.ballHit2.play()
       // Flash the right paddle
       rightPaddle.flash()
     }
   }
 }
 
-function doMovementTick(speedMultiplier) {
+function doMovementTick (speedMultiplier) {
   let left, right
   if (gameState === 'playing') {
-    left = leftWall
-    right = rightWall
+    left = window.leftWall
+    right = window.rightWall
   } else {
     left = 0 - ball.size.w
     right = 400 + ball.size.w
@@ -146,32 +146,32 @@ function doMovementTick(speedMultiplier) {
   // Restrict the ball to the play area on the X and Y axis
   ball.move(Math.max(left, Math.min(right, ball.position.x +
     ballMovement[0] * speedMultiplier)),
-    Math.max(topWall, Math.min(bottomWall, ball.position.y +
+  Math.max(window.topWall, Math.min(window.bottomWall, ball.position.y +
     ballMovement[1] * speedMultiplier)))
 }
 
 function doPaddleTick (speedMultiplier) {
   if (paddleMovement[0] === 1) {
-    leftPaddle.move(null, Math.min(leftPaddle.position.y + paddleSpeed
-      * speedMultiplier, bottomWall - leftPaddle.size.h))
+    leftPaddle.move(null, Math.min(leftPaddle.position.y + paddleSpeed *
+      speedMultiplier, window.bottomWall - leftPaddle.size.h))
   } else if (paddleMovement[0] === 2) {
     leftPaddle.move(null, Math.max(leftPaddle.position.y - paddleSpeed *
-      speedMultiplier, topWall))
+      speedMultiplier, window.topWall))
   }
   if (paddleMovement[1] === 1) {
-    rightPaddle.move(null, Math.min(rightPaddle.position.y + paddleSpeed
-      * speedMultiplier, bottomWall - rightPaddle.size.h))
+    rightPaddle.move(null, Math.min(rightPaddle.position.y + paddleSpeed *
+      speedMultiplier, window.bottomWall - rightPaddle.size.h))
   } else if (paddleMovement[1] === 2) {
-    rightPaddle.move(null, Math.max(rightPaddle.position.y - paddleSpeed
-      * speedMultiplier, topWall))
+    rightPaddle.move(null, Math.max(rightPaddle.position.y - paddleSpeed *
+      speedMultiplier, window.topWall))
   }
 }
 
 function randomFieldCoords (leftHalf) {
-  const randomX = random(leftWall + leftPaddle.size.w + spawnPadding,
-  rightWall - rightPaddle.size.w - spawnPadding)
-  const randomY = random(topWall + spawnPadding, bottomWall - spawnPadding)
-  return {x: randomX, y: randomY}
+  const randomX = window.random(window.leftWall + leftPaddle.size.w + spawnPadding,
+    window.rightWall - rightPaddle.size.w - spawnPadding)
+  const randomY = window.random(window.topWall + spawnPadding, window.bottomWall - spawnPadding)
+  return { x: randomX, y: randomY }
 }
 
 function resetPaddles () {
@@ -182,13 +182,13 @@ function resetPaddles () {
 
 function startGame () {
   // Game over sound may still be playing
-  stopSoundEffects()
+  window.stopSoundEffects()
   // Play sound effect
-  soundEffects["placingBall"].play()
+  window.soundEffects.placingBall.play()
   // Show ball
   ball.hidden = false
   // Move ball to random place
-  let randomCoords = randomFieldCoords()
+  const randomCoords = randomFieldCoords()
   ball.move(randomCoords.x, randomCoords.y)
   // Set the ball X velocity
   if (randomCoords.x > 200) {
@@ -208,7 +208,7 @@ function startGame () {
 
 function showStart () {
   gameState = 'starting'
-  disableButtons()
+  window.disableButtons()
 }
 
 function resetGame () {
@@ -217,10 +217,10 @@ function resetGame () {
   resetPaddles()
   ball.hidden = true
   gameState = 'stopped'
-  enableButtons()
+  window.enableButtons()
 }
 
-window.buttons.freeplay.onclick = function() {
+window.buttons.freeplay.onclick = function () {
   if (gameState === 'stopped') {
     // Set game mode
     gameMode = 'normal'
@@ -230,28 +230,28 @@ window.buttons.freeplay.onclick = function() {
   }
 }
 
-window.buttons.firstTo10.onclick = function() {
+window.buttons.firstTo10.onclick = function () {
   if (gameState === 'stopped') {
     // Set game mode
     gameMode = 'firstTo10'
     showStart()
     // Play sound effect
-    soundEffects['menuSelect'].play()
+    window.soundEffects.menuSelect.play()
   }
 }
 
-window.buttons.bot.onclick = function() {
+window.buttons.bot.onclick = function () {
   if (gameState === 'stopped') {
     // Set game mode
     gameMode = 'bot'
     showStart()
     // Play sound effect
-    soundEffects['menuSelect'].play()
+    window.soundEffects.menuSelect.play()
   }
 }
 
-resize()
-document.body.onresize = resize
+window.resize()
+document.body.onresize = window.resize
 
 window.ballMovement = ballMovement
 window.paddleMovement = paddleMovement

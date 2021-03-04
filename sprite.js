@@ -108,4 +108,4 @@ class Sprite {
 }
 
 window.sprites = sprites
-window.Sprite = sprite
+window.Sprite = Sprite
