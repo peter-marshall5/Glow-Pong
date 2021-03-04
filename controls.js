@@ -1,52 +1,52 @@
 // Handles key presses
 
 function onkeydown (e) {
-  //console.log('Key down:', e.code)
+  //  console.log('Key down:', e.code)
   switch (e.code) {
     case 'Space':
       console.log('Space pressed')
-      if (gameState === 'gameover' || gameState === 'starting') {
+      if (window.getGameState() === 'gameover' || window.getGameState() === 'starting') {
         startGame()
       }
-      if (gameState === 'victory') {
+      if (window.getwindow.getGameState() === 'victory') {
         resetGame()
       }
-      break;
+      break
     case 'ArrowUp':
       console.log('Up arrow pressed')
       if (gameMode !== 'bot') {
-        paddleMovement[1] = 2
+        window.paddleMovement[1] = 2
       } else {
-        paddleMovement[0] = 2
+        window.paddleMovement[0] = 2
       }
-      break;
+      break
     case 'ArrowDown':
       console.log('Down arrow pressed')
       if (gameMode !== 'bot') {
-        paddleMovement[1] = 1
+        window.paddleMovement[1] = 1
       } else {
-        paddleMovement[0] = 1
+        window.paddleMovement[0] = 1
       }
-      break;
+      break
     case 'KeyW':
       console.log('W key pressed')
-      paddleMovement[0] = 2
-      break;
+      window.paddleMovement[0] = 2
+      break
     case 'KeyS':
       console.log('S key pressed')
-      paddleMovement[0] = 1
-      break;
+      window.paddleMovement[0] = 1
+      break
     case 'Escape':
       console.log('Escape key pressed')
       // Stop the game if it's not stopped
-      if (gameState !== 'stopped') {
+      if (window.getwindow.getGameState() !== 'stopped') {
         resetGame()
         // Play lose sound
         stopSoundEffects()
         soundEffects['menuCancel'].play()
       }
     default:
-
+    break
   }
 }
 
@@ -56,36 +56,36 @@ function onkeyup (e) {
     case 'ArrowUp':
       console.log('Up arrow released')
       if (gameMode !== 'bot') {
-        paddleMovement[1] = 0
+        window.paddleMovement[1] = 0
       } else {
-        paddleMovement[0] = 0
+        window.paddleMovement[0] = 0
       }
-      break;
+      break
       case 'ArrowDown':
       console.log('Down arrow released')
       if (gameMode !== 'bot') {
-        paddleMovement[1] = 0
+        window.paddleMovement[1] = 0
       } else {
-        paddleMovement[0] = 0
+        window.paddleMovement[0] = 0
       }
-      break;
+      break
     case 'KeyW':
       console.log('W key released')
-      paddleMovement[0] = 0
+      window.paddleMovement[0] = 0
       break;
     case 'KeyS':
       console.log('S key released')
-      paddleMovement[0] = 0
-      break;
+      window.paddleMovement[0] = 0
+      break
     default:
-
+    break
   }
 }
 
 function onclick (e) {
-  for (var i in buttons) {
-    if (buttons[i].onclick && buttons[i].checkClick(e.offsetX, e.offsetY)) {
-      buttons[i].onclick()
+  for (const i in window.buttons) {
+    if (window.buttons[i].onclick && window.buttons[i].checkClick(e.offsetX, e.offsetY)) {
+      window.buttons[i].onclick()
     }
   }
 }

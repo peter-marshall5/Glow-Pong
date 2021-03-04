@@ -59,7 +59,6 @@ function predictBallPath () {
   let predictionX = window.ball.position.x
   let predictionY = window.ball.position.y
   const predictionMovement = [window.ballMovement[0], window.ballMovement[1]]
-  console.log(predictionX, predictionY, predictionMovement)
   while (predictionX < window.rightPaddle.position.x) {
     // Move the invisible ball
     predictionX = Math.max(window.leftWall, Math.min(window.rightWall,

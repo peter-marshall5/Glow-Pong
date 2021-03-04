@@ -79,3 +79,4 @@ loadImages()
 
 window.disableButtons = disableButtons
 window.enableButtons = enableButtons
+window.buttons = buttons

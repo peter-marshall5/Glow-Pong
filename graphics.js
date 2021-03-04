@@ -217,3 +217,7 @@ window.resize = resize
 window.canvas = canvas
 window.drawButton = drawButton
 window.drawSprite = drawSprite
+window.leftWall = leftWall
+window.rightWall = rightWall
+window.topWall = topWall
+window.bottomWall = bottomWall

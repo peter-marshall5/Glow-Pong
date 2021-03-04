@@ -18,9 +18,7 @@ class SoundEffect {
     return fetch(this.url)
       .then(response => response.arrayBuffer())
       .then(data => actx.decodeAudioData(data))
-      .then(function (buffer) {
-        this.buffer = buffer
-      })
+      .then((buffer) => this.setBuffer(buffer))
   }
 
   play (n) {
@@ -39,6 +37,10 @@ class SoundEffect {
       // Stop the sound
       this.source.stop()
     }
+  }
+
+  setBuffer (buffer) {
+    this.buffer = buffer
   }
 }
 

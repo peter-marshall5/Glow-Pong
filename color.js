@@ -7,3 +7,4 @@ class Color {
 }
 
 window.whiteColor = new Color(255, 255, 255)
+window.Color = Color

@@ -220,7 +220,7 @@ function resetGame () {
   enableButtons()
 }
 
-buttons['freeplay'].onclick = function() {
+window.buttons.freeplay.onclick = function() {
   if (gameState === 'stopped') {
     // Set game mode
     gameMode = 'normal'
@@ -230,7 +230,7 @@ buttons['freeplay'].onclick = function() {
   }
 }
 
-buttons['firstTo10'].onclick = function() {
+window.buttons.firstTo10.onclick = function() {
   if (gameState === 'stopped') {
     // Set game mode
     gameMode = 'firstTo10'
@@ -240,7 +240,7 @@ buttons['firstTo10'].onclick = function() {
   }
 }
 
-buttons['bot'].onclick = function() {
+window.buttons.bot.onclick = function() {
   if (gameState === 'stopped') {
     // Set game mode
     gameMode = 'bot'
@@ -258,10 +258,6 @@ window.ballMovement = ballMovement
 window.paddleMovement = paddleMovement
 window.ball = ball
 window.rightPaddle = rightPaddle
-window.leftWall = leftWall
-window.rightWall = rightWall
-window.topWall = topWall
-window.bottomWall = bottomWall
 window.setGameState = function (s) {
   gameState = s
 }
