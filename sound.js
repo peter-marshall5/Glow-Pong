@@ -14,14 +14,16 @@ class SoundEffect {
     this.url = url
   }
 
-  load() {
+  load () {
     return fetch(this.url)
       .then(response => response.arrayBuffer())
       .then(data => actx.decodeAudioData(data))
-      .then(buffer => this.buffer = buffer)
+      .then(function (buffer) {
+        this.buffer = buffer
+      })
   }
 
-  play(n) {
+  play (n) {
     // Create buffer source
     this.source = actx.createBufferSource()
     // Set the audio buffer
@@ -32,7 +34,7 @@ class SoundEffect {
     this.source.start(actx.currentTime, n || 0.007)
   }
 
-  stop() {
+  stop () {
     if (this.source) {
       // Stop the sound
       this.source.stop()
@@ -42,14 +44,14 @@ class SoundEffect {
 
 function stopSoundEffects () {
   // Run for each sound effect
-  for (let i in soundEffects) {
+  for (const i in soundEffects) {
     // Stop the sound effect
     soundEffects[i].stop()
   }
 }
 
 function loadSoundEffects () {
-  for (let i in soundEffects) {
+  for (const i in soundEffects) {
     // Load the sound effect
     soundEffects[i].load()
   }
@@ -70,3 +72,5 @@ addSoundEffect('assets/sounds/puck_hit2.ogg', 'ballHit2')
 addSoundEffect('assets/sounds/show_level.ogg', 'showLevel')
 addSoundEffect('assets/sounds/winner.ogg', 'winner')
 loadSoundEffects()
+
+window.stopSoundEffects = stopSoundEffects

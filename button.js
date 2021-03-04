@@ -67,7 +67,7 @@ function disableButtons () {
 }
 
 function enableButtons () {
-  for (let i in buttons) {
+  for (const i in buttons) {
     buttons[i].hidden = false
   }
 }
