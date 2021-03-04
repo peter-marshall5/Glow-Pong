@@ -72,3 +72,5 @@ function predictBallPath () {
   }
   return predictionY
 }
+
+window.doBotTick = doBotTick
