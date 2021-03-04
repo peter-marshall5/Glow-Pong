@@ -44,8 +44,8 @@ function doBotTick () {
   }
   if (target < window.rightPaddle.position.y + safeArea) {
     window.paddleMovement[1] = 2
-  } else if (target > window.rightPaddle.position.y + window.rightPaddle.size.h
-    - safeArea - ball.size.h) {
+  } else if (target > window.rightPaddle.position.y + window.rightPaddle.size.h -
+    safeArea - window.ball.size.h) {
     window.paddleMovement[1] = 1
   } else {
     window.paddleMovement[1] = 0
@@ -63,7 +63,7 @@ function predictBallPath () {
     // Move the invisible ball
     predictionX = Math.max(window.leftWall, Math.min(window.rightWall,
       predictionX + predictionMovement[0]))
-      predictionY = Math.max(window.topWall, Math.min(window.bottomWall, predictionY +
+    predictionY = Math.max(window.topWall, Math.min(window.bottomWall, predictionY +
       predictionMovement[1]))
     if (predictionY <= window.topWall || predictionY >= window.bottomWall - window.ball.size.h) {
       predictionMovement[1] = -predictionMovement[1]
