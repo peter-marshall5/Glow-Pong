@@ -23,11 +23,11 @@ const scores = [0, 0]
 const paddleColor = new window.Color(255, 255, 255)
 const divider = new window.Sprite(199.5, window.topWall, 1, 225 - window.topWall - (225 - window.bottomWall),
   null, 10, new window.Color(255, 64, 64))
-let ball = new window.Sprite(50, 50, 10, 10, new window.Color(127, 255, 0),
+const ball = new window.Sprite(50, 50, 10, 10, new window.Color(127, 255, 0),
   5, new window.Color(80, 100, 0), new window.Color(4, 255, 54))
 ball.hidden = true
 const leftPaddle = new window.Sprite(window.leftWall, 20, 6, window.paddleHeight, paddleColor,
-    5, new window.Color(80, 80, 160), new window.Color(80, 80, 205))
+  5, new window.Color(80, 80, 160), new window.Color(80, 80, 205))
 const rightPaddle = new window.Sprite(window.rightWall, 20, 6, window.paddleHeight, paddleColor, 5, new window.Color(160, 80, 80), new window.Color(205, 80, 80))
 resetPaddles()
 
@@ -226,7 +226,7 @@ window.buttons.freeplay.onclick = function () {
     gameMode = 'normal'
     showStart()
     // Play sound effect
-    soundEffects['menuSelect'].play()
+    window.soundEffects.menuSelect.play()
   }
 }
 
@@ -257,6 +257,8 @@ window.ballMovement = ballMovement
 window.paddleMovement = paddleMovement
 window.ball = ball
 window.rightPaddle = rightPaddle
+window.leftPaddle = leftPaddle
+window.divider = divider
 window.setGameState = function (s) {
   gameState = s
 }
