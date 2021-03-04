@@ -2,8 +2,6 @@
 
 const canvas = document.getElementById('game')
 const ctx = canvas.getContext('2d')
-let cWidth = 0
-let cHeight = 0
 
 const leftWall = 20
 const rightWall = 374
@@ -19,19 +17,22 @@ const textBlur = 30
 const textOffset = 400 / 4 - 20
 
 function resize () {
+  let cWidth = 0
+  let cHeight = 0
   // Check if width or height should be scaled according to resolution
-  if (document.body.clientWidth / 16 * 9 > document.body.clientHeight) {
+  if (window.innerWidth / 16 * 9 > window.innerHeight) {
     // The screen is
     // In landscape
-    cHeight = document.body.clientHeight
+    cHeight = window.innerHeight
     // Find height based on width
-    cWidth = cHeight / 9 * 16
+    cWidth = window.innerHeight / 9 * 16
   } else {
     // In portrait
-    cWidth = document.body.clientWidth
+    cWidth = window.innerWidth
     // Find width based on height
     cHeight = cWidth / 16 * 9
   }
+  console.log(cWidth, cHeight, window.innerWidth, window.innerHeight)
   canvas.width = cWidth
   canvas.height = cHeight
   backgroundColor = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, canvas.width / 2, canvas.width / 2, canvas.height / 2, 0)
