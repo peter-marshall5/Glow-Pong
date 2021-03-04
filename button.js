@@ -1,10 +1,10 @@
 // Handles loading of images and button events
 
-let images = {}
-let buttons = {}
+const images = {}
+const buttons = {}
 
 class ImageLoader {
-  constructor(url, name) {
+  constructor (url, name) {
     images[name] = this
     this.url = url
     this.name = name
@@ -12,13 +12,13 @@ class ImageLoader {
     this.onclick = null
   }
 
-  load() {
+  load () {
     this.img.src = this.url
   }
 }
 
 class Button {
-  constructor(url, name, x, y, width, height) {
+  constructor (url, name, x, y, width, height) {
     buttons[name] = this
     this.name = name
     this.img = new ImageLoader(url, name)
@@ -29,13 +29,13 @@ class Button {
     this.hidden = false
   }
 
-  checkClick(x, y) {
+  checkClick (x, y) {
     if (this.hidden) {
       return false
     }
-    let coordMap = {
-      start: convertCoords(this.x, this.y),
-      size: convertCoords(this.w, this.h)
+    const coordMap = {
+      start: window.convertCoords(this.x, this.y),
+      size: window.convertCoords(this.w, this.h)
     }
     const center = (canvas.width / 2) - (coordMap.size.x / 2)
     if (center + coordMap.start.x < x &&

@@ -17,23 +17,23 @@ let randomlyMoved = false
 let target = 0
 
 function doBotTick () {
-  if (ballMovement[0] < 0) {
+  if (window.ballMovement[0] < 0) {
     randomlyMoved = false
-    paddleMovement[1] = 0
+    window.paddleMovement[1] = 0
     return
   }
   if (!randomlyMoved) {
     // Move randomly
-    target = Math.random() * (bottomWall - topWall) + topWall
+    target = Math.random() * (window.bottomWall - window.topWall) + window.topWall
     // Don't move randomly again
     randomlyMoved = true
   }
-  if (ball.position.x > halfField) {
+  if (window.ball.position.x > halfField) {
     if (!predictedY) {
       predictedY = predictBallPath()
       target = predictedY + Math.random() * 2 * fuzziness - fuzziness
     }
-    if (ball.position.x > almostThere && !accuratelyPredictedY) {
+    if (window.ball.position.x > almostThere && !accuratelyPredictedY) {
       accuratelyPredictedY = true
       predictedY = predictBallPath()
       target = predictedY
@@ -42,31 +42,30 @@ function doBotTick () {
     predictedY = null
     accuratelyPredictedY = false
   }
-  if (target < rightPaddle.position.y + safeArea) {
-    paddleMovement[1] = 2
-  } else if (target > rightPaddle.position.y + rightPaddle.size.h
+  if (target < window.rightPaddle.position.y + safeArea) {
+    window.paddleMovement[1] = 2
+  } else if (target > window.rightPaddle.position.y + window.rightPaddle.size.h
     - safeArea - ball.size.h) {
-    paddleMovement[1] = 1
+    window.paddleMovement[1] = 1
   } else {
-    paddleMovement[1] = 0
+    window.paddleMovement[1] = 0
   }
 }
 
 function predictBallPath () {
-  if (ballMovement[0] < 0) {
-    console.log('U')
+  if (window.ballMovement[0] < 0) {
     return
   }
-  predictionX = ball.position.x
-  predictionY = ball.position.y
-  let predictionMovement = [ballMovement[0], ballMovement[1]]
-  while (predictionX < rightPaddle.position.x) {
+  let predictionX = window.ball.position.x
+  let predictionY = window.ball.position.y
+  const predictionMovement = [window.ballMovement[0], window.ballMovement[1]]
+  while (predictionX < window.rightPaddle.position.x) {
     // Move the invisible ball
-    predictionX = Math.max(leftWall, Math.min(rightWall,
+    predictionX = Math.max(window.leftWall, Math.min(window.rightWall,
       predictionX + predictionMovement[0]))
-      predictionY = Math.max(topWall, Math.min(bottomWall, predictionY +
+      predictionY = Math.max(window.topWall, Math.min(window.bottomWall, predictionY +
       predictionMovement[1]))
-    if (predictionY <= topWall || predictionY >= bottomWall - ball.size.h) {
+    if (predictionY <= window.topWall || predictionY >= window.bottomWall - window.ball.size.h) {
       predictionMovement[1] = -predictionMovement[1]
     }
   }

@@ -210,3 +210,5 @@ function calculateSpeedMultiplier (frameDelta) {
   let multiplier = (60 / framerate)
   return multiplier
 }
+
+window.convertCoords = convertCoords
