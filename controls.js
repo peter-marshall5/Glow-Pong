@@ -16,12 +16,16 @@ function onkeydown (e) {
       console.log('Up arrow pressed')
       if (gameMode !== 'bot') {
         paddleMovement[1] = 2
+      } else {
+        paddleMovement[0] = 2
       }
       break;
     case 'ArrowDown':
       console.log('Down arrow pressed')
       if (gameMode !== 'bot') {
         paddleMovement[1] = 1
+      } else {
+        paddleMovement[0] = 1
       }
       break;
     case 'KeyW':
@@ -53,12 +57,16 @@ function onkeyup (e) {
       console.log('Up arrow released')
       if (gameMode !== 'bot') {
         paddleMovement[1] = 0
+      } else {
+        paddleMovement[0] = 0
       }
       break;
       case 'ArrowDown':
       console.log('Down arrow released')
       if (gameMode !== 'bot') {
         paddleMovement[1] = 0
+      } else {
+        paddleMovement[0] = 0
       }
       break;
     case 'KeyW':
