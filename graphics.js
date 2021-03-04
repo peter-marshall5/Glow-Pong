@@ -21,6 +21,7 @@ let textOffset = 400 / 4 - 20
 function resize() {
   // Check if width or height should be scaled according to resolution
   if(document.body.clientWidth / 16 * 9 > document.body.clientHeight) {
+    console.log("Landscape")
     // In landscape
     cHeight = document.body.clientHeight
     // Find height based on width
@@ -212,3 +213,7 @@ function calculateSpeedMultiplier (frameDelta) {
 }
 
 window.convertCoords = convertCoords
+window.resize = resize
+window.canvas = canvas
+window.drawButton = drawButton
+window.drawSprite = drawSprite

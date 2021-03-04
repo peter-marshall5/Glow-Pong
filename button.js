@@ -37,32 +37,32 @@ class Button {
       start: window.convertCoords(this.x, this.y),
       size: window.convertCoords(this.w, this.h)
     }
-    const center = (canvas.width / 2) - (coordMap.size.x / 2)
+    const center = (window.canvas.width / 2) - (coordMap.size.x / 2)
     if (center + coordMap.start.x < x &&
       center + coordMap.start.x + coordMap.size.x > x &&
       coordMap.start.y < y &&
       coordMap.start.y + coordMap.size.y > y) {
-        return true
-      }
-      return false
+      return true
+    }
+    return false
   }
 
-  draw() {
+  draw () {
     if (this.hidden) {
       return
     }
-    drawButton(this)
+    window.drawButton(this)
   }
 }
 
 function loadImages () {
-  for (let i in images) {
+  for (const i in images) {
     images[i].load()
   }
 }
 
 function disableButtons () {
-  for (let i in buttons) {
+  for (const i in buttons) {
     buttons[i].hidden = true
   }
 }
@@ -73,7 +73,10 @@ function enableButtons () {
   }
 }
 
-new Button('assets/images/endless.png', 'freeplay', 0, 90, 100, 23)
-new Button('assets/images/first_to_10.png', 'firstTo10', 0, 118, 100, 23)
-new Button('assets/images/play_against_bot.png', 'bot', 0, 146, 100, 23)
+let freeplay = new Button('assets/images/endless.png', 'freeplay', 0, 90, 100, 23)
+let ft10 = new Button('assets/images/first_to_10.png', 'firstTo10', 0, 118, 100, 23)
+let bot = new Button('assets/images/play_against_bot.png', 'bot', 0, 146, 100, 23)
 loadImages()
+
+window.disableButtons = disableButtons
+window.enableButtons = enableButtons

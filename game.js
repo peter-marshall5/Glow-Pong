@@ -253,3 +253,8 @@ buttons['bot'].onclick = function() {
 resize()
 document.body.onresize = resize
 gameLoop()
+
+window.ballMovement = ballMovement
+window.paddleMovement = paddleMovement
+window.ball = ball
+window.rightPaddle = rightPaddle
