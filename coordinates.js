@@ -6,6 +6,10 @@ function convertCoords (x, y) {
   return { x: x / 400 * window.canvas.width, y: y / 225 * window.canvas.height }
 }
 
+function reverseConvertCoords (x, y) {
+  return { x: x / window.canvas.width * 400, y: y / window.canvas.height * 225 }
+}
+
 function random (min, max) {
   // Difference between minimum and maximum values
   const delta = max - min
@@ -13,4 +17,5 @@ function random (min, max) {
 }
 
 window.convertCoords = convertCoords
+window.reverseConvertCoords = reverseConvertCoords
 window.random = random
