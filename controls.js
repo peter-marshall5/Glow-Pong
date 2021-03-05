@@ -97,7 +97,6 @@ function onclick (e) {
   }
 }
 
-const touches = { l: null, r: null }
 const touchMargin = 60
 
 function getTouchOffset (pageX, pageY) {
