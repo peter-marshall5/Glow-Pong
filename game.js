@@ -34,8 +34,6 @@ resetPaddles()
 let frameTime = 0
 // Strength that framerate variations have on the frame time
 const filterStrength = 20
-// How much to speed up / slow down the game
-let speedMultiplier = 1
 // Timeout to auto-disable blur
 let blurTimeout = null
 
@@ -60,6 +58,7 @@ function gameLoop () {
     if (blurTimeout) {
       clearTimeout(blurTimeout)
       window.enableBlur()
+      blurTimeout = null
     }
   }
   if (gameState === 'stopped') {
