@@ -30,6 +30,14 @@ const leftPaddle = new window.Sprite(window.leftWall, 20, 6, window.paddleHeight
   5, new window.Color(80, 80, 160), new window.Color(80, 80, 205))
 const rightPaddle = new window.Sprite(window.rightWall, 20, 6, window.paddleHeight, paddleColor, 5, new window.Color(160, 80, 80), new window.Color(205, 80, 80))
 resetPaddles()
+// Store the frame time
+let frameTime = 0
+// Strength that framerate variations have on the frame time
+const filterStrength = 20
+// How much to speed up / slow down the game
+let speedMultiplier = 1
+// Timeout to auto-disable blur
+let blurTimeout = null
 
 // Runs before every frame is drawn on-screen
 function gameLoop () {
@@ -37,10 +45,23 @@ function gameLoop () {
   const currentTime = performance.now()
   // Calculate the time difference from last frame
   const frameDelta = currentTime - lastFrameTime
-  // Calculate how much to speed up / slow down the game
-  const speedMultiplier = window.calculateSpeedMultiplier(frameDelta)
   // Store the time that this frame was rendered
   lastFrameTime = currentTime
+  // Add to the frame time
+  frameTime += (frameDelta - frameTime) / filterStrength
+  // Calculate how much to speed up / slow down the game
+  const speedMultiplier = window.calculateSpeedMultiplier(frameTime)
+  // Disable blur if the game is running slowly
+  if (1000 / frameTime < 50) {
+    if (!blurTimeout) {
+      blurTimeout = setTimeout(window.disableBlur(), 1000)
+    }
+  } else {
+    if (blurTimeout) {
+      clearTimeout(blurTimeout)
+      window.enableBlur()
+    }
+  }
   if (gameState === 'stopped') {
     // Show welcome screen
     window.drawWelcome()
