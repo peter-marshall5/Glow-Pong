@@ -1,6 +1,7 @@
 {
   "name": "Pong Game",
-  "display": "standalone",
+  "display": "fullscreen",
+  "orientation": "landscape",
   "icons": [{
   "src": "assets/icon/icon-128.png",
     "sizes": "128x128",
