@@ -52,7 +52,7 @@ function gameLoop () {
   // Disable blur if the game is running slowly
   if (1000 / frameTime < 50) {
     if (!blurTimeout) {
-      blurTimeout = setTimeout(window.disableBlur(), 1000)
+      blurTimeout = setTimeout(window.disableBlur, 1000)
     }
   } else {
     if (blurTimeout) {
