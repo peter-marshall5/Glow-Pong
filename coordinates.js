@@ -12,7 +12,7 @@ function rawConvertCoords (x, y) {
 }
 
 function reverseConvertCoords (x, y) {
-  return { x: x / window.canvas.width * 400, y: y / window.canvas.height * 225 }
+  return { x: x / window.getCwidth() * 400, y: y / window.getCheight() * 225 }
 }
 
 function random (min, max) {
