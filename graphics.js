@@ -95,7 +95,7 @@ function drawSprite (that) {
       (that.flashIntensity * 0.8) + ')'
     ctx.shadowOffsetX = 0
     ctx.shadowOffsetY = 0
-    ctx.shadowBlur = that.flashIntensity * 30 + 10
+    ctx.shadowBlur = window.convertCoords(that.flashIntensity * 30 + 10).x / 2
     // Draw shadow twice to make glow brighter
     ctx.fillRect(coordMap.start.x, coordMap.start.y,
       coordMap.size.x, coordMap.size.y)
@@ -111,7 +111,7 @@ function drawSprite (that) {
       that.blurColor.b + ')'
     ctx.shadowOffsetX = 0
     ctx.shadowOffsetY = 0
-    ctx.shadowBlur = blurRadius
+    ctx.shadowBlur = window.convertCoords(blurRadius / 2).x
   }
   // Draw rectangle
   ctx.fillRect(coordMap.start.x, coordMap.start.y,
@@ -144,7 +144,7 @@ function drawText (message, x, y, fontSize, color, blurColor) {
     color.b + ')'
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY = 0
-  ctx.shadowBlur = textBlur
+  ctx.shadowBlur = window.convertCoords(textBlur / 2).x
   // Draw text
   ctx.fillText(message, center + coordMap.x, coordMap.y)
   // Remove glow
