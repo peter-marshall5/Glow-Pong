@@ -22,5 +22,6 @@ function random (min, max) {
 }
 
 window.convertCoords = convertCoords
+window.rawConvertCoords = rawConvertCoords
 window.reverseConvertCoords = reverseConvertCoords
 window.random = random
