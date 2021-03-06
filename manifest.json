@@ -1,5 +1,6 @@
 {
   "name": "Pong Game",
+  "display": "standalone",
   "icons": [{
   "src": "assets/icon/icon-128.png",
     "sizes": "128x128",

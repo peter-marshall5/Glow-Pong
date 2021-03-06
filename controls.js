@@ -138,10 +138,12 @@ function handleTouch (e) {
 }
 
 function ontouchstart (e) {
+  e.preventDefault()
   handleTouch(e)
 }
 
 function ontouchmove (e) {
+  e.preventDefault()
   handleTouch(e)
 }
 
