@@ -103,7 +103,7 @@ function checkCollisions () {
     ball.flash()
   } else if (ball.position.y + ball.size.h >= window.bottomWall &&
     ballMovement[1] > 0) {
-    //Ball hit the bottom
+    // Ball hit the bottom
     console.log('Bottom collision')
     // Make the ball move up
     ballMovement[1] = -Math.abs(ballMovement[1])
