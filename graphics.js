@@ -233,3 +233,6 @@ window.calculateSpeedMultiplier = calculateSpeedMultiplier
 window.getCwidth = function () {
   return cWidth
 }
+window.getCheight = function () {
+  return cHeight
+}

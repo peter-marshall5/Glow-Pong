@@ -83,6 +83,11 @@ function onkeyup (e) {
   }
 }
 
+function getOffset (pageX, pageY) {
+  const rect = window.canvas.getBoundingClientRect()
+  return { x: pageX - rect.left, y: pageY - rect.top }
+}
+
 function onclick (e) {
   if (window.getGameState() === 'gameover' || window.getGameState() === 'starting') {
     window.startGame()
@@ -90,8 +95,10 @@ function onclick (e) {
   if (window.getGameState() === 'victory') {
     window.resetGame()
   }
+  const offset = getOffset(e.pageX, e.pageY)
+  console.log(offset)
   for (const i in window.buttons) {
-    if (window.buttons[i].onclick && window.buttons[i].checkClick(e.offsetX, e.offsetY)) {
+    if (window.buttons[i].onclick && window.buttons[i].checkClick(offset.x, offset.y)) {
       window.buttons[i].onclick()
     }
   }
@@ -99,16 +106,11 @@ function onclick (e) {
 
 const touchMargin = 60
 
-function getTouchOffset (pageX, pageY) {
-  const rect = window.canvas.getBoundingClientRect()
-  return { x: pageX - rect.left, y: pageY - rect.top }
-}
-
 function processTouch (e) {
   let leftTouch = false
   let rightTouch = false
   for (let i = 0; i < e.touches.length; i++) {
-    const offset = getTouchOffset(e.touches[i].pageX, e.touches[i].pageY)
+    const offset = getOffset(e.touches[i].pageX, e.touches[i].pageY)
     const coordMap = window.reverseConvertCoords(offset.x, offset.y)
     if (coordMap.x < touchMargin) {
       leftTouch = coordMap.y

@@ -33,10 +33,11 @@ class Button {
       return false
     }
     const coordMap = {
-      start: window.convertCoords(this.x, this.y),
-      size: window.convertCoords(this.w, this.h)
+      start: window.rawConvertCoords(this.x, this.y),
+      size: window.rawConvertCoords(this.w, this.h)
     }
     const center = (window.getCwidth() / 2) - (coordMap.size.x / 2)
+    console.log(coordMap, center)
     if (center + coordMap.start.x < x &&
       center + coordMap.start.x + coordMap.size.x > x &&
       coordMap.start.y < y &&

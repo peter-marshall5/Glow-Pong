@@ -6,6 +6,11 @@ function convertCoords (x, y) {
   return { x: x / 400 * window.canvas.width, y: y / 225 * window.canvas.height }
 }
 
+// Convert without screen DPI
+function rawConvertCoords (x, y) {
+  return { x: x / 400 * window.getCwidth(), y: y / 225 * window.getCheight() }
+}
+
 function reverseConvertCoords (x, y) {
   return { x: x / window.canvas.width * 400, y: y / window.canvas.height * 225 }
 }
