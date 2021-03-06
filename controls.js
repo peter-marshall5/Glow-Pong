@@ -104,7 +104,18 @@ function onclick (e) {
   }
 }
 
+function onhold () {
+  // Stop the game if it's not stopped
+  if (window.getGameState() !== 'stopped') {
+    window.resetGame()
+    // Play lose sound
+    window.stopSoundEffects()
+    window.soundEffects.menuCancel.play()
+  }
+}
+
 const touchMargin = 60
+let holdTimeout = null
 
 function processTouch (e) {
   let leftTouch = false
@@ -140,8 +151,10 @@ function handleTouch (e) {
 }
 
 function ontouchstart (e) {
-  // e.preventDefault()
   handleTouch(e)
+  if (!holdTimeout) {
+    holdTimeout = setTimeout(onhold, 500)
+  }
 }
 
 function ontouchmove (e) {
@@ -149,8 +162,16 @@ function ontouchmove (e) {
   handleTouch(e)
 }
 
+function ontouchend (e) {
+  if (e.touches.length === 0) {
+    clearTimeout(holdTimeout)
+    holdTimeout = null
+  }
+}
+
 window.addEventListener('keydown', onkeydown)
 window.addEventListener('keyup', onkeyup)
 window.canvas.addEventListener('click', onclick)
 window.canvas.addEventListener('touchstart', ontouchstart)
 window.canvas.addEventListener('touchmove', ontouchmove)
+window.canvas.addEventListener('touchend', ontouchend)
