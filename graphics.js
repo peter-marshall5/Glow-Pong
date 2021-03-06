@@ -17,6 +17,7 @@ const textBlur = 30
 const textOffset = 400 / 4 - 20
 let cWidth = 0
 let cHeight = 0
+let blurEffects = true
 
 function resize () {
   // Check if width or height should be scaled according to resolution
@@ -85,7 +86,7 @@ function drawSprite (that) {
     that.color.r + ',' +
     that.color.g + ',' +
     that.color.b + ')'
-  if (that.flashIntensity > 0) {
+  if (that.flashIntensity > 0 && blurEffects) {
     // Add glow
     // Don't oversaturate glow at first
     ctx.shadowColor = 'rgba(' +
@@ -102,7 +103,7 @@ function drawSprite (that) {
     ctx.fillRect(coordMap.start.x, coordMap.start.y,
       coordMap.size.x, coordMap.size.y)
   }
-  if (that.blurRadius) {
+  if (that.blurRadius && blurEffects) {
     const blurRadius = window.convertCoords(that.blurRadius).x
     // Add glow
     ctx.shadowColor = 'rgb(' +
@@ -137,14 +138,16 @@ function drawText (message, x, y, fontSize, color, blurColor) {
     color.r + ',' +
     color.g + ',' +
     color.b + ')'
-  // Add glow
-  ctx.shadowColor = 'rgb(' +
-    color.r + ',' +
-    color.g + ',' +
-    color.b + ')'
-  ctx.shadowOffsetX = 0
-  ctx.shadowOffsetY = 0
-  ctx.shadowBlur = window.convertCoords(textBlur / 2).x
+  if (blurEffects) {
+    // Add glow
+    ctx.shadowColor = 'rgb(' +
+      color.r + ',' +
+      color.g + ',' +
+      color.b + ')'
+    ctx.shadowOffsetX = 0
+    ctx.shadowOffsetY = 0
+    ctx.shadowBlur = window.convertCoords(textBlur / 2).x
+  }
   // Draw text
   ctx.fillText(message, center + coordMap.x, coordMap.y)
   // Remove glow
@@ -235,4 +238,10 @@ window.getCwidth = function () {
 }
 window.getCheight = function () {
   return cHeight
+}
+window.disableBlur = function () {
+  blurEffects = false
+}
+window.enableBlur = function () {
+  blurEffects = true
 }
