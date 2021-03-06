@@ -15,10 +15,10 @@ const textBlurColor = new window.Color(100, 80, 80)
 const spriteColor = new window.Color(255, 128, 128)
 const textBlur = 30
 const textOffset = 400 / 4 - 20
+let cWidth = 0
+let cHeight = 0
 
 function resize () {
-  let cWidth = 0
-  let cHeight = 0
   // Check if width or height should be scaled according to resolution
   if (window.innerWidth / 16 * 9 > window.innerHeight) {
     // The screen is
@@ -33,8 +33,10 @@ function resize () {
     cHeight = cWidth / 16 * 9
   }
   console.log(cWidth, cHeight, window.innerWidth, window.innerHeight)
-  canvas.width = cWidth
-  canvas.height = cHeight
+  canvas.style.width = cWidth + 'px'
+  canvas.style.height = cHeight + 'px'
+  canvas.width = cWidth * window.devicePixelRatio
+  canvas.height = cHeight * window.devicePixelRatio
   backgroundColor = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, canvas.width / 2, canvas.width / 2, canvas.height / 2, 0)
   backgroundColor.addColorStop(0, 'rgba(17,17,17,1)')
   backgroundColor.addColorStop(1, 'rgba(24,24,24,1)')
@@ -228,3 +230,6 @@ window.drawVictory = drawVictory
 window.drawWelcome = drawWelcome
 window.drawStarting = drawStarting
 window.calculateSpeedMultiplier = calculateSpeedMultiplier
+window.getCwidth = function () {
+  return cWidth
+}
