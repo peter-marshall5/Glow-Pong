@@ -142,19 +142,29 @@ function handleTouch (e) {
     window.leftPaddle.move(null, Math.max(window.topWall,
       Math.min(window.bottomWall - window.leftPaddle.size.h,
         t.l - window.leftPaddle.size.h / 2)))
+    if (holdTimeout) {
+      clearTimeout(holdTimeout)
+      holdTimeout = null
+    }
   }
   if (t.r && window.getGameMode() !== 'bot') {
     window.rightPaddle.move(null, Math.max(window.topWall,
       Math.min(window.bottomWall - window.rightPaddle.size.h,
         t.r - window.rightPaddle.size.h / 2)))
+    if (holdTimeout) {
+      clearTimeout(holdTimeout)
+      holdTimeout = null
+    }
+  }
+  if (!t.l && !t.r) {
+    if (!holdTimeout) {
+      holdTimeout = setTimeout(onhold, 500)
+    }
   }
 }
 
 function ontouchstart (e) {
   handleTouch(e)
-  if (!holdTimeout) {
-    holdTimeout = setTimeout(onhold, 500)
-  }
 }
 
 function ontouchmove (e) {
