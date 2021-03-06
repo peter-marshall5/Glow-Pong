@@ -92,10 +92,21 @@ function gameLoop () {
 }
 
 function checkCollisions () {
-  if (!ball.checkBounds(window.topWall, window.bottomWall)) {
-    // Ball hit the top or bottom
-    console.log('Horizontal collision')
-    ballMovement[1] = -ballMovement[1]
+  // Check if the ball is bouncing off the play field
+  if (ball.position.y <= window.topWall && ballMovement[1] < 0) {
+    // Ball hit the top
+    console.log('Top collision')
+    // Make the ball move down
+    ballMovement[1] = Math.abs(ballMovement[1])
+    window.soundEffects.borderHit.play()
+    // Make ball flash
+    ball.flash()
+  } else if (ball.position.y + ball.size.h >= window.bottomWall &&
+    ballMovement[1] > 0) {
+    //Ball hit the bottom
+    console.log('Bottom collision')
+    // Make the ball move up
+    ballMovement[1] = -Math.abs(ballMovement[1])
     window.soundEffects.borderHit.play()
     // Make ball flash
     ball.flash()

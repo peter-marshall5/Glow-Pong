@@ -76,15 +76,6 @@ class Sprite {
     return false
   }
 
-  // Checks that a sprite is within the top and bottom of the play area
-  checkBounds (top, bottom) {
-    if (this.position.y <= top ||
-    this.position.y + this.size.h > bottom) {
-      return false
-    }
-    return true
-  }
-
   // Checks if a sprite is between two points on the Y axis
   checkVerticalCollision (top, bottom) {
     if (typeof top === 'object') {
