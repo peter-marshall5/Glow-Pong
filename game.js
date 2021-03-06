@@ -50,9 +50,9 @@ function gameLoop () {
   // Calculate how much to speed up / slow down the game
   const speedMultiplier = window.calculateSpeedMultiplier(frameTime)
   // Disable blur if the game is running slowly
-  if (1000 / frameTime < 50) {
+  if (1000 / frameTime < 57) {
     if (!blurTimeout) {
-      blurTimeout = setTimeout(window.disableBlur, 1000)
+      blurTimeout = setTimeout(window.disableBlur, 1300)
     }
   } else {
     if (blurTimeout) {
