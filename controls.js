@@ -138,7 +138,7 @@ function handleTouch (e) {
 }
 
 function ontouchstart (e) {
-  //e.preventDefault()
+  // e.preventDefault()
   handleTouch(e)
 }
 
