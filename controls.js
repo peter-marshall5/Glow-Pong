@@ -135,6 +135,9 @@ function processTouch (e) {
 
 function handleTouch (e) {
   if (window.getGameState() !== 'playing') {
+    if (!holdTimeout) {
+      holdTimeout = setTimeout(onhold, 500)
+    }
     return
   }
   const t = processTouch(e)
