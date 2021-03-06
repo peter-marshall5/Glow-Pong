@@ -25,7 +25,7 @@ function resize () {
     // In landscape
     cHeight = window.innerHeight
     // Find height based on width
-    cWidth = window.innerHeight / 9 * 16
+    cWidth = cHeight / 9 * 16
   } else {
     // In portrait
     cWidth = window.innerWidth
