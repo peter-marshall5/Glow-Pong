@@ -33,7 +33,7 @@ resetPaddles()
 // Store the frame time
 let frameTime = 0
 // Strength that framerate variations have on the frame time
-const filterStrength = 20
+const filterStrength = 140
 // Timeout to auto-disable blur
 let blurTimeout = null
 
